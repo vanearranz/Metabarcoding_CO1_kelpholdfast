@@ -17,7 +17,7 @@ All FASTQ sequence files are available from the National Center for Biotechnolog
 - MARES reference sequences database : https://osf.io/4f8mk/ 
 - BLASTn  https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download
 - MEGAN6 -  Metagenome Analyzer https://www.wsi.uni-tuebingen.de/lehrstuehle/algorithms-in-bioinformatics/software/megan6/
-- VSEARCH (install instructions)
+- VSEARCH https://github.com/torognes/vsearch
 - R https://www.r-project.org/
 
 
