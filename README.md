@@ -180,20 +180,22 @@ Import the blast output and the fasta file used as the blast query into MEGAN (F
 
 Apply the following LCA settings:
 
-min score 100
-max expected 0.00000001
-min % ID 97
-top % 10
-min support % 0 (off)
-min support 1
+```
+min score 100 
+max expected 0.00000001 
+min % ID 97 
+top % 10 
+min support % 0 (off) 
+min support 1 
+```
 
 Select level of taxonomy to view, possibly use multiple different levels, e.g. species, genus, family
 File -> Export -> Text (csv) Format
 Choose: readName_to_taxonPathPercent
 
-•	It has a percent value at the end of the line. This refers to the percentage of high scoring alignments for the given read that map to the last taxon on the path. It has nothing to do with the percentage used in the weighted LCA.
-•	It only reports taxa in the path that have an official KPCOFGS rank. Intermediate nodes that have no taxonomic rank, or one that does not belong to KPCOFGS, are suppressed
-•	Each node is prefixed by letter__ to indicate the rank, e.g. g__ for genus, s__ for species
+-	It has a percent value at the end of the line. This refers to the percentage of high scoring alignments for the given read that map to the last taxon on the path. It has nothing to do with the percentage used in the weighted LCA.
+-	It only reports taxa in the path that have an official KPCOFGS rank. Intermediate nodes that have no taxonomic rank, or one that does not belong to KPCOFGS, are suppressed
+-	Each node is prefixed by letter__ to indicate the rank, e.g. g__ for genus, s__ for species
 
 Save into the main folder as assigned_seqs-MARES-ex.txt 
 
