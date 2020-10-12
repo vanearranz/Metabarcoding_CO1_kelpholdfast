@@ -13,7 +13,7 @@ The scripts are designed to be run using a Linux OS, and were developed on Ubunt
 - Raw sequence data : CHECK WHICH ONE IS THE EASIEST WAY TO DOWNLOAD IT READY TO USE FOR THIS PIPELINE. Now I have them in a local folder name processed_trimmed. 
 All FASTQ sequence files are available from the National Center for Biotechnology Information short-read archive database (Bioproject: PRJNA638997, Biosamples: SAMN15220525-SAMN15220620).
 - QIIME2 version 2019.4 https://docs.qiime2.org/2020.8/install/ 
-- Biom (install instructions)
+- Biom http://biom-format.org/
 - MARES reference sequences database : https://osf.io/4f8mk/ 
 - BLASTn  https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download
 - MEGAN6 -  Metagenome Analyzer https://www.wsi.uni-tuebingen.de/lehrstuehle/algorithms-in-bioinformatics/software/megan6/
@@ -24,6 +24,9 @@ All FASTQ sequence files are available from the National Center for Biotechnolog
 ## Getiing started
 
 ### Activate QIIME2 
+
+**Citation:** Bolyen, E., Rideout, J.R., Dillon, M.R. et al. Reproducible, interactive, scalable and extensible microbiome data science using QIIME 2. Nat Biotechnol 37, 852–857 (2019). https://doi.org/10.1038/s41587-019-0209-9
+
 ```
 conda activate qiime2-2019.4
 ``` 
@@ -68,7 +71,7 @@ qiime tools view trimmed-seqs.qzv
 
 ## Denoise, chimera removal and clustering in ASVs: DADA2
 
-DADA2 : Pair-end joining, dereplication, chimera filtering and clustering in ASVs 
+[DADA2](https://github.com/qiime2/q2-dada2) : Pair-end joining, dereplication, chimera filtering and clustering in ASVs 
 
 **Citation:** Callahan, B., McMurdie, P., Rosen, M. et al. DADA2: High-resolution sample inference from Illumina amplicon data. Nat Methods 13, 581–583 (2016). https://doi.org/10.1038/nmeth.3869
 
@@ -153,13 +156,17 @@ ASVs passing the quality control and filtering thresholds (rep-seq-ASV.fasta) we
 
 [MARES](https://www.nature.com/articles/s41597-020-0549-9) is the most comprehensive CO1 reference database for marine eukaryotes available, and provides users the ability to retain taxa that cannot be assigned at the species level, but can be assigned at higher taxonomic levels. 
 
-**To use MARES reference database :**
+**Citation:** Arranz, V., Pearman, W.S., Aguirre, J.D. et al. MARES, a replicable pipeline and curated reference database for marine eukaryote metabarcoding. Sci Data 7, 209 (2020). https://doi.org/10.1038/s41597-020-0549-9
+
+
+**To use MARES reference database: **
+
 Download MARES_NOBAR from https://osf.io/4f8mk/
 *Note : You can also used you MARES_BAR.*
 
 Place MARES_NOBAR_BOLD_NCBI_sl_reformatted.fasta in the main folder or include the path after -db 
 
-### Assign each sequence to a taxon
+### Assign each sequence to a taxon : Blastn
 
 We first performed a BLASTn against MARES reference database with an e-value of 1-60 for high-quality matches and max_target_seqs equal to 10. 
 
@@ -168,7 +175,7 @@ blastn -db MARES_NOBAR_BOLD_NCBI_sl_reformatted.fasta -query rep-seq-ASV.fasta -
 
 ```
 
-### Annotate sequences with taxonomy
+### Annotate sequences with taxonomy : MEGAN6
 
 Then, we used MEGAN 6.18.9 for taxonomic assignment within the NCBI taxonomy framework using the default Lowest Common Ancestor (LCA) algorithm parameters. 
 
@@ -200,12 +207,46 @@ Choose: readName_to_taxonPathPercent
 Save into the main folder as assigned_seqs-MARES-ex.txt 
 
 
-**To create the OTU_taxonomy file to use in downstream analysis in R (PhyloSeq package):**
+**To create the OTU_taxonomy file to use in downstream analysis (see Statistical analysis):**
 - Export it as TaxonPathPercent
 - Import it into excel and remove the columns with the percentage
 - The unknowns were giving problems. Edit the excel to get rid of them and replace them for the taxon known 
 - The ASVs not assigned have to be set as 'd_unassigned' because is not working otherwise
 - Generate the names with a semicolon ; separation
 - Create OTU_ID in the first column and the TaxonPAth in the other one
-- Save as .csv or .txt
+- Save as .csv or .txt -> otu_taxonomy_edited_8ranks.txt
 
+## Clustering ASVs into OTUs : VSEARCH 
+
+SIGUE POR AQUIII!! :) 
+
+**Citation:**  Rognes T, Flouri T, Nichols B, Quince C, Mahé F. (2016) VSEARCH: a versatile open source tool for metagenomics. PeerJ 4:e2584. https://doi.org/10.7717/peerj.2584
+
+```
+vsearch --cluster_size rep-seq-ASV.fasta  --id 0.97 --uc clustering-results.uc -msaout sequences-outs
+```
+
+Save the clustering results.uc as .csv
+
+I edited manually deleting the consensus C (because they are the same as the S of the clusters) -> 97clusters-ASVintoOTUS.csv
+
+Change the header names as ASV_ID to merge
+
+``` {r}
+ASV_table_decontam <- read.delim("~/Desktop/Metabarcoding_CO1_kelpholdfast/ASV_table.csv")
+97clusters.ASVintoOTUS <- read.delim("~/Desktop/Metabarcoding_CO1_kelpholdfast/97clusters-ASVintoOTUS.csv")
+ASV_OTU_table <- merge(ASV_table_decontam, `97clusters.ASVintoOTUS`, by.x="ASV_ID", by.y="ASV_ID")
+
+otu_taxonomy_edited_8ranks <- read.delim("~/Desktop/Metabarcoding_CO1_kelpholdfast/otu_taxonomy_edited_8ranks.txt")
+ASV_OTU_taxonomy_table <- merge(ASV_OTU_table, otu_taxonomy_edited_8ranks, by.x="ASV_ID", by.y="OTU_ID")
+write.csv(ASV_OTU_taxonomy_table, file = "ASV_OTU_taxonomy_table.csv")
+```
+
+Manually edited again the ASV_OTU_taxonomy_table to create the OTU97_table.csv
+- Sort by H and  S : copy all the ASV column of the S into the OTU column (they are the consensus of the clusters)
+- Sort by Cluster number
+- Delete all the columns from vsearch : taxonomy and ASV_ID
+
+## Statistical analysis 
+
+INCLUDE R SCRIPTS AND RDATA? 
