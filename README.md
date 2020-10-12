@@ -14,9 +14,9 @@ The scripts are designed to be run using a Linux OS, and were developed on Ubunt
 All FASTQ sequence files are available from the National Center for Biotechnology Information short-read archive database (Bioproject: PRJNA638997, Biosamples: SAMN15220525-SAMN15220620).
 - QIIME2 version 2019.4 https://docs.qiime2.org/2020.8/install/ 
 - Biom (install instructions)
-- MARES reference sequences database. 
+- MARES reference sequences database : https://osf.io/4f8mk/ 
 - BLASTn  https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download
-- MEGAN 
+- MEGAN6 -  Metagenome Analyzer https://www.wsi.uni-tuebingen.de/lehrstuehle/algorithms-in-bioinformatics/software/megan6/
 - VSEARCH (install instructions)
 - R https://www.r-project.org/
 
