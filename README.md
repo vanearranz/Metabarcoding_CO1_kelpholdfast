@@ -218,7 +218,7 @@ Save into the main folder as assigned_seqs-MARES-ex.txt
 
 ## Clustering ASVs into OTUs : VSEARCH 
 
-SIGUE POR AQUIII!! :) 
+SIGUE POR AQUIII!! :) we can do this throught QIIME2. Check https://github.com/devonorourke/tidybug/blob/master/docs/sequence_filtering.md (maybe it is easier to document) the results should be the same!! 
 
 **Citation:**  Rognes T, Flouri T, Nichols B, Quince C, Mahé F. (2016) VSEARCH: a versatile open source tool for metagenomics. PeerJ 4:e2584. https://doi.org/10.7717/peerj.2584
 
