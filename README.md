@@ -149,15 +149,22 @@ biom convert
 
 ASVs passing the quality control and filtering thresholds were taxonomically assigned using the MARES_COI_NOBAR reference sequence database (Arranz, Pearman, Aguirre, & Liggins, 2019). 
 
-MARES is the most comprehensive COI reference database for marine eukaryotes available, and provides users the ability to retain taxa that cannot be assigned at the species level, but can be assigned at higher taxonomic levels (Arranz, Pearman, Aguirre, & Liggins, 2020). 
+[MARES](https://www.nature.com/articles/s41597-020-0549-9) is the most comprehensive COI reference database for marine eukaryotes available, and provides users the ability to retain taxa that cannot be assigned at the species level, but can be assigned at higher taxonomic levels. 
 
-We first performed a BLASTn (Altschul, Gish, Miller, Myers, & Lipman, 1990) with an e-value of 1-60 for high-quality matches and max_target_seqs equal to 1. Then, we used MEGAN 6.18.3 (Huson et al., 2016), for taxonomic assignment within the NCBI taxonomy framework using the default Lowest Common Ancestor algorithm parameters
+### Assign each sequence to a taxon
 
-# Assign each sequence to a taxon
+We first performed a BLASTn with an e-value of 1-60 for high-quality matches and max_target_seqs equal to 1. 
+
+**Citation** : 
+
 
 BLASTN Prepare to mEGAN.SH 
 
-# Annotate sequences with species
+### Annotate sequences with species
+
+Then, we used MEGAN 6.18.3 for taxonomic assignment within the NCBI taxonomy framework using the default Lowest Common Ancestor algorithm parameters. 
+
+**Citation** : (Huson et al., 2016)
 
 Launch MEGAN, import the blast output and the fasta file used as the blast query
 Apply the following LCA settings:
