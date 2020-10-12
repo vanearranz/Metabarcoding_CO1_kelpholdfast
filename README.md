@@ -23,11 +23,11 @@ All FASTQ sequence files are available from the National Center for Biotechnolog
 
 ## Getiing started
 
-# Activate QIIME2 
+### Activate QIIME2 
 ```
 conda activate qiime2-2019.4
 ``` 
-# Import raw sequence data
+### Import raw sequence data
 ```
 qiime tools import \
   --type 'SampleData[PairedEndSequencesWithQuality]' \
@@ -91,7 +91,6 @@ qiime dada2 denoise-paired \
   --o-representative-sequences rep-seqs-dada2.qza \
   --o-denoising-stats denoising-stats-dada2.qza
   
-
 qiime feature-table summarize \
 --i-table table-dada2.qza \
 --o-visualization table-dada2.qzv 
@@ -126,57 +125,61 @@ qiime feature-table filter-seqs
 --o-filtered-data filtered39-seqs-dada2.qza
 ```
 
-### Export ASV table 
+### Export ASV table and representative sequences 
 
 ```
+# Example ASV table without filtering 
 qiime tools export
--- input-path filtered25-table-dada2.qza
---output-path ASV25table/
+-- input-path table-dada2.qza \
+--output-path ASVtable/
 
+#Export representative sequences
 qiime tools export  \
---input-path filtered25-seqs-dada2.qza \
---output-path Dada2-filtered25-repseqs
+--input-path rep-seqs-dada2.qza \
+--output-path rep-seq-ASV.fasta
 ```
 
-Convert the ASV table in Biom 
+Convert the ASV table to tsv in Biom 
 
 ```
 biom convert
--i ASV25table/feature-table.biom
--o ASV25table/ASV25-frequency-table.tsv  --to-tsv
+-i ASVtable/feature-table.biom
+-o ASVtable/ASV-frequency-table.tsv  --to-tsv
 ```
 
 ## Taxonomic assignment 
 
-ASVs passing the quality control and filtering thresholds were taxonomically assigned using the MARES_COI_NOBAR reference sequence database (Arranz, Pearman, Aguirre, & Liggins, 2019). 
+ASVs passing the quality control and filtering thresholds (rep-seq-ASV.fasta) were taxonomically assigned using the MARES reference sequence database. 
 
-[MARES](https://www.nature.com/articles/s41597-020-0549-9) is the most comprehensive COI reference database for marine eukaryotes available, and provides users the ability to retain taxa that cannot be assigned at the species level, but can be assigned at higher taxonomic levels. 
+[MARES](https://www.nature.com/articles/s41597-020-0549-9) is the most comprehensive CO1 reference database for marine eukaryotes available, and provides users the ability to retain taxa that cannot be assigned at the species level, but can be assigned at higher taxonomic levels. 
 
-We used MARES_NOBAR (https://osf.io/4f8mk/) 
+**To use MARES reference database :**
+Download MARES_NOBAR from https://osf.io/4f8mk/
+*Note : You can also used you MARES_BAR.*
+
+Place MARES_NOBAR_BOLD_NCBI_sl_reformatted.fasta in the main folder or include the path after -db 
 
 ### Assign each sequence to a taxon
 
-We first performed a BLASTn with an e-value of 1-60 for high-quality matches and max_target_seqs equal to 1. 
-
-**Citation** : 
-
-
-
+We first performed a BLASTn against MARES reference database with an e-value of 1-60 for high-quality matches and max_target_seqs equal to 10. 
 
 ```
-bash Scripts/Blasn_prepareToMegan.sh
+blastn -db MARES_NOBAR_BOLD_NCBI_sl_reformatted.fasta -query rep-seq-ASV.fasta -evalue 1e-60 -max_target_seqs 10 -outfmt 5 -out MARES_MEGAN.txt -num_threads 12
+
 ```
 
+### Annotate sequences with taxonomy
 
+Then, we used MEGAN 6.18.9 for taxonomic assignment within the NCBI taxonomy framework using the default Lowest Common Ancestor (LCA) algorithm parameters. 
 
-### Annotate sequences with species
+**Citation** : Huson DH, Beier S, Flade I, Górska A, El-Hadidi M, et al. (2016) MEGAN Community Edition - Interactive Exploration and Analysis of Large-Scale Microbiome Sequencing Data. PLOS Computational Biology 12(6): e1004957. https://doi.org/10.1371/journal.pcbi.1004957
 
-Then, we used MEGAN 6.18.3 for taxonomic assignment within the NCBI taxonomy framework using the default Lowest Common Ancestor algorithm parameters. 
+Launch MEGAN 6.18.9
 
-**Citation** : (Huson et al., 2016)
+Import the blast output and the fasta file used as the blast query into MEGAN (File → Import From BLAST) : MARES_MEGAN.txt and rep-seq-ASV.fasta 
 
-Launch MEGAN, import the blast output and the fasta file used as the blast query
 Apply the following LCA settings:
+
 min score 100
 max expected 0.00000001
 min % ID 97
@@ -185,6 +188,22 @@ min support % 0 (off)
 min support 1
 
 Select level of taxonomy to view, possibly use multiple different levels, e.g. species, genus, family
-File -> Export csv
-Choose: readName_to_taxonName
-Save into the folder 05_annotated
+File -> Export -> Text (csv) Format
+Choose: readName_to_taxonPathPercent
+
+•	It has a percent value at the end of the line. This refers to the percentage of high scoring alignments for the given read that map to the last taxon on the path. It has nothing to do with the percentage used in the weighted LCA.
+•	It only reports taxa in the path that have an official KPCOFGS rank. Intermediate nodes that have no taxonomic rank, or one that does not belong to KPCOFGS, are suppressed
+•	Each node is prefixed by letter__ to indicate the rank, e.g. g__ for genus, s__ for species
+
+Save into the main folder as assigned_seqs-MARES-ex.txt 
+
+
+**To create the OTU_taxonomy file to use in downstream analysis in R (PhyloSeq package):**
+- Export it as TaxonPathPercent
+- Import it into excel and remove the columns with the percentage
+- The unknowns were giving problems. Edit the excel to get rid of them and replace them for the taxon known 
+- The ASVs not assigned have to be set as 'd_unassigned' because is not working otherwise
+- Generate the names with a semicolon ; separation
+- Create OTU_ID in the first column and the TaxonPAth in the other one
+- Save as .csv or .txt
+
