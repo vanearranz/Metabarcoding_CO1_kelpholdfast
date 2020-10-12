@@ -10,33 +10,24 @@ The scripts are designed to be run using a Linux OS, and were developed on Ubunt
 ## Requirements : 
 
 - This repo contents
-- QIIME2 version 2019.4
+- Raw sequence data : CHECK WHICH ONE IS THE EASIEST WAY TO DOWNLOAD IT READY TO USE FOR THIS PIPELINE. Now I have them in a local folder name processed_trimmed. 
+All FASTQ sequence files are available from the National Center for Biotechnology Information short-read archive database (Bioproject: PRJNA638997, Biosamples: SAMN15220525-SAMN15220620).
+- QIIME2 version 2019.4 https://docs.qiime2.org/2020.8/install/ 
 - Biom (install instructions)
-- VSEARCH (install instructions)
-- R (install instructions)
 - MARES reference sequences database (intructions)
-- Raw sequence data : CHECK WHICH ONE IS THE EASIEST WAY TO DOWNLOAD IT READY TO USE FOR THIS PIPELINE. All FASTQ sequence files are available from the National Center for Biotechnology Information short-read archive database (Bioproject: PRJNA638997, Biosamples: SAMN15220525-SAMN15220620).
+- BLASTn  https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download
+- MEGAN 
+- VSEARCH (install instructions)
+- R https://www.r-project.org/
 
-## Install and activate QIIME2 
 
-Workflow below uses QIIME2-2019.4.
+## Getiing started
 
-To install QIIME2 follow https://docs.qiime2.org/2020.8/install/ 
-
-### Activate QIIME2 
-
+# Activate QIIME2 
 ```
 conda activate qiime2-2019.4
-```
-
-## Download raw sequences and import into QIIME2 
-
-### Download raw sequences 
-CHECK WHICH ONE IS THE EASIEST WAY TO DOWNLOAD IT READY TO USE FOR THIS PIPELINE. 
-Now I have them in a local folder name processed_trimmed
-
-## Importing data
-
+``` 
+# Import raw sequence data
 ```
 qiime tools import \
   --type 'SampleData[PairedEndSequencesWithQuality]' \
@@ -57,7 +48,7 @@ qiime tools view demux-paired-end.qzv
 
 We use [cutadapt](https://github.com/qiime2/q2-cutadapt) to remove the primers
 
-**Citation:** Marcel Martin. Cutadapt removes adapter sequences from high-throughput sequencing reads. EMBnet. journal, 17(1):pp–10, 2011. doi:10.14806/ej.17.1.200.
+**Citation:** Marcel Martin. Cutadapt removes adapter sequences from high-throughput sequencing reads. EMBnet. journal, 17(1):pp–10, 2011. https://doi:10.14806/ej.17.1.200.
 
 ```
 qiime cutadapt trim-paired \
@@ -151,6 +142,33 @@ Convert the ASV table in Biom
 
 ```
 biom convert
--i ASV25table/feature-table .biom
--o ASV25table/ASV25-frequency-table.tsv  - - to-tsv
+-i ASV25table/feature-table.biom
+-o ASV25table/ASV25-frequency-table.tsv  --to-tsv
 ```
+## Taxonomic assignment 
+
+ASVs passing the quality control and filtering thresholds were taxonomically assigned using the MARES_COI_NOBAR reference sequence database (Arranz, Pearman, Aguirre, & Liggins, 2019). 
+
+MARES is the most comprehensive COI reference database for marine eukaryotes available, and provides users the ability to retain taxa that cannot be assigned at the species level, but can be assigned at higher taxonomic levels (Arranz, Pearman, Aguirre, & Liggins, 2020). 
+
+We first performed a BLASTn (Altschul, Gish, Miller, Myers, & Lipman, 1990) with an e-value of 1-60 for high-quality matches and max_target_seqs equal to 1. Then, we used MEGAN 6.18.3 (Huson et al., 2016), for taxonomic assignment within the NCBI taxonomy framework using the default Lowest Common Ancestor algorithm parameters
+
+# Assign each sequence to a taxon
+
+BLASTN Prepare to mEGAN.SH 
+
+# Annotate sequences with species
+
+Launch MEGAN, import the blast output and the fasta file used as the blast query
+Apply the following LCA settings:
+min score 100
+max expected 0.00000001
+min % ID 97
+top % 10
+min support % 0 (off)
+min support 1
+
+Select level of taxonomy to view, possibly use multiple different levels, e.g. species, genus, family
+File -> Export csv
+Choose: readName_to_taxonName
+Save into the folder 05_annotated
