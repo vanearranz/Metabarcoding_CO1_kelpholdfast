@@ -14,7 +14,7 @@ The scripts are designed to be run using a Linux OS, and were developed on Ubunt
 All FASTQ sequence files are available from the National Center for Biotechnology Information short-read archive database (Bioproject: PRJNA638997, Biosamples: SAMN15220525-SAMN15220620).
 - QIIME2 version 2019.4 https://docs.qiime2.org/2020.8/install/ 
 - Biom (install instructions)
-- MARES reference sequences database (intructions)
+- MARES reference sequences database. 
 - BLASTn  https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download
 - MEGAN 
 - VSEARCH (install instructions)
@@ -145,11 +145,14 @@ biom convert
 -i ASV25table/feature-table.biom
 -o ASV25table/ASV25-frequency-table.tsv  --to-tsv
 ```
+
 ## Taxonomic assignment 
 
 ASVs passing the quality control and filtering thresholds were taxonomically assigned using the MARES_COI_NOBAR reference sequence database (Arranz, Pearman, Aguirre, & Liggins, 2019). 
 
 [MARES](https://www.nature.com/articles/s41597-020-0549-9) is the most comprehensive COI reference database for marine eukaryotes available, and provides users the ability to retain taxa that cannot be assigned at the species level, but can be assigned at higher taxonomic levels. 
+
+We used MARES_NOBAR (https://osf.io/4f8mk/) 
 
 ### Assign each sequence to a taxon
 
@@ -158,7 +161,13 @@ We first performed a BLASTn with an e-value of 1-60 for high-quality matches and
 **Citation** : 
 
 
-BLASTN Prepare to mEGAN.SH 
+
+
+```
+bash Scripts/Blasn_prepareToMegan.sh
+```
+
+
 
 ### Annotate sequences with species
 
