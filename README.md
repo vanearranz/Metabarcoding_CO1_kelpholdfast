@@ -312,4 +312,6 @@ We used a custom R script Resources/[Edesign_function.R](https://github.com/vane
 - Edesign.cleaning : to extract contaminants and merge samples to generate the bioinformatically merge samples. 
 - Edesign.LM.pipeline : uses the contrast matrix we used for our tests and run the linear models with the rarefied presence/absence matrix to assess how our laboratory and bioinformatic decisions influenced biodiversity estimates for the holdfast communities. 
 
+We run the custom R script with the Phyloseq objects created in the previous steps and contained in [Edesign.Rdata](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/Edesign.Rdata) file. 
+
 The results of the linear models were included in Figure 2 and Supporting information Table S2 of the manuscript "Metabarcoding hyperdiverse marine communities in temperate kelp forests: an experimental approach to inform future studies." by Vanessa Arranz, Libby Liggins and J. David Aguirre. 
