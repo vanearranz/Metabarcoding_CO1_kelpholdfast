@@ -166,7 +166,7 @@ Download MARES_NOBAR from https://osf.io/4f8mk/
 
 Place MARES_NOBAR_BOLD_NCBI_sl_reformatted.fasta in the main folder or include the path after -db 
 
-### Assign each sequence to a taxon : Blastn
+### Assign each sequence to a taxon : BLASTn
 
 We first performed a BLASTn against MARES reference database with an e-value of 1-60 for high-quality matches and max_target_seqs equal to 10. 
 
@@ -270,7 +270,7 @@ asvNF_taxonomy <- merge(asv_table_nf, taxonomy, by.x ="OTU_ID", by.y ="OTU_ID")
 write.table(asvNF_taxonomy, "ASVnf_taxonomy.txt", sep="\t", row.names=FALSE) 
 ```
 
-In the terminal, convert  the .txt into Biom format with the taxonomy as metadata 
+In the terminal, convert  the .txt into [Biom format](https://biom-format.org/) with the taxonomy as metadata 
 ```
 biom convert -i ASVnf_taxonomy.txt -o asv.table.biom --to-json --table-type="OTU table" --process-obs-metadata taxonomy
 ```
