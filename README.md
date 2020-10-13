@@ -303,11 +303,11 @@ str(sampledata00)
 ASV_nf <- merge_phyloseq(ps_asv00, sampledata00)
 ```
 
-The remaining Phyloseq objects are included in the Resources/PREPARE_THIS.Rdata file ready to perform next step.  
+The remaining Phyloseq objects are included in Resources/[Edesign.Rdata](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/Edesign.Rdata) file ready to perform next step.  
 
 ### Extract possible contaminants, merge samples and perform linear models 
 
-We used a custom R script [Edesign_function.R](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/Edesign_function.R) which contains 2 functions : 
+We used a custom R script Resources/[Edesign_function.R](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/Edesign_function.R) which contains 2 functions : 
 
 - Edesign.cleaning : to extract contaminants and merge samples to generate the bioinformatically merge samples. 
 - Edesign.LM.pipeline : uses the contrast matrix we used for our tests and run the linear models with the rarefied presence/absence matrix to assess how our laboratory and bioinformatic decisions influenced biodiversity estimates for the holdfast communities. 
