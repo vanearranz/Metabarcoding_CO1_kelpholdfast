@@ -215,7 +215,7 @@ Save into the main folder as assigned_seqs-MARES-ex.txt
 
 
 **To create the OTU_taxonomy file to use in downstream analysis (see Statistical analysis):**
-- Export it as READnAME_TO_taxonPathKPCOFGS / ASSIGNED
+- Export it as ReadName_to_taxonPathKPCOFGS / ASSIGNED
 - Import it into excel and remove the columns with the percentage *No need in the last version of MEGAN 
 - The unknowns were giving problems. Edited the excel to get rid of them and replace them for the taxon known 
 - The ASVs not assigned have to be set as 'd_unassigned' because is not working otherwise
