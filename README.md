@@ -173,7 +173,7 @@ We first create a blast database from MARES reference sequence database
 makeblastdb -in MARES_NOBAR_BOLD_NCBI_sl_reformatted.fasta -dbtype nucl -parse_seqids
 ```
 
-### Assign each sequence to a taxon : BLASTn
+### Blast each sequences againts MARES reference sequence database : Blastn 
 
 Then, we performed a BLASTn against MARES reference database with an e-value of 1-60 for high-quality matches and max_target_seqs equal to 10. 
 
@@ -182,7 +182,7 @@ blastn -db MARES_NOBAR_BOLD_NCBI_sl_reformatted.fasta -query rep-seq-ASV.fasta -
 
 ```
 
-### Annotate sequences with taxonomy : MEGAN6
+### Use LCA algorithm for taxonomic assignment : MEGAN6
 
 We used MEGAN 6.18.9 for taxonomic assignment within the NCBI taxonomy framework using the default Lowest Common Ancestor (LCA) algorithm parameters. 
 
