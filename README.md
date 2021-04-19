@@ -195,9 +195,9 @@ Import the blast output and the fasta file used as the blast query into MEGAN (F
 Apply the following LCA settings:
 
 ```
-min score 100 
+min score 98 
 max expected 0.00000001 
-min % ID 97 
+min % ID 75 
 top % 10 
 min support % 0 (off) 
 min support 1 
@@ -205,7 +205,7 @@ min support 1
 
 Select level of taxonomy to view, possibly use multiple different levels, e.g. species, genus, family
 File -> Export -> Text (csv) Format
-Choose: readName_to_taxonPathPercent
+Choose: readName_to_taxonPathKPCOFGS
 
 -	It has a percent value at the end of the line. This refers to the percentage of high scoring alignments for the given read that map to the last taxon on the path. It has nothing to do with the percentage used in the weighted LCA.
 -	It only reports taxa in the path that have an official KPCOFGS rank. Intermediate nodes that have no taxonomic rank, or one that does not belong to KPCOFGS, are suppressed
@@ -215,8 +215,8 @@ Save into the main folder as assigned_seqs-MARES-ex.txt
 
 
 **To create the OTU_taxonomy file to use in downstream analysis (see Statistical analysis):**
-- Export it as TaxonPathPercent
-- Import it into excel and remove the columns with the percentage
+- Export it as READnAME_TO_taxonPathKPCOFGS / ASSIGNED
+- Import it into excel and remove the columns with the percentage *No need in the last version of MEGAN 
 - The unknowns were giving problems. Edited the excel to get rid of them and replace them for the taxon known 
 - The ASVs not assigned have to be set as 'd_unassigned' because is not working otherwise
 - Generate the names with a semicolon ; separation
