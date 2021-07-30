@@ -213,7 +213,10 @@ We used a combination of Biom (in the terminal) and R Scripts, to import each AS
 
 In R, combine ASV_table no filtered and taxonomy associated:
 ```
-# Example with only ASV table without filtering 
+library("phyloseq")
+library("biomformat")
+
+# ASV table without filtering 
 
 asv_table_nf <- read_delim("ASVtable.tsv", "\t", escape_double = FALSE, trim_ws = TRUE)
 taxonomy <- read_delim("taxonomy_edited_8ranks.txt",  "\t", escape_double = FALSE, trim_ws = TRUE, col_names = TRUE)
@@ -254,9 +257,45 @@ str(sampledata00)
 ASV_nf <- merge_phyloseq(ps_asv00, sampledata00)
 ```
 
-### Extract possible contaminants and tag switching normalisation 
+## Extract possible contaminants and tag switching normalisation 
 
-- ADD R Script for this part!!! 
+We used decontam package in R to identify and extract blank contaminants using the negative controls. 
+
+**Citation:**  Davis NM, Proctor D, Holmes SP, Relman DA, Callahan BJ (2017). “Simple statistical identification and removal of contaminant sequences in marker-gene and metagenomics data.” bioRxiv, 221499. https://doi.org/10.1101/221499 
+
+
+```
+library("phyloseq")
+library("decontam")
+
+#Remove Seawater control 
+ASV_nf.noSC <-  subset_samples(ASV_nf, Sample != "SC")
+
+# Identify and extract blank contaminants using the negative controls. The frequency and prevalence probabilities are combined with Fisher's method and used to identify contaminants ###
+
+sample_data(ASV_nf.noSC)$is.neg <- sample_data(ASV_nf.noSC)$Sample_or_Control == "Control"
+contam.comb.all <- isContaminant(ASV_nf.noSC, method="combined", neg="is.neg", threshold=0.5, conc="Concentration")
+
+# Extract contaminants
+ASV_nf.noSC.nocon <- prune_taxa(!contam.comb.all$contaminant, ASV_nf.noSC)
+
+# Extract negative control samples 
+ASV_nf.noSC.nocon.nc <- subset_samples(ASV_nf.noSC.nocon, Sample_or_Control=="True Sample")
+
+write.csv(otu_table(ASV_nf.noSC.nocon.nc),file = "ASVtable_nf_nosc_noc_nocon.csv")
+
+```
+
+Tag switching correction. We used the R Script included in Resources/owi_renormalize.R ADD THE SCRIPT THERE!!!! (https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/owi_renormalise.R) It sort the samples by abundance of each ASV and eliminate the reads of the samples corresponding to a cumulative frequency of less than 3% for each particular ASV . 
+
+**Citation:**  Wangensteen OS, Turon X (2016) Metabarcoding techniques for assessing biodiversity of marine animal forests. Marine Animal Forests. The Ecology of Benthic Biodiversity Hotspots, eds Rossi S, Bramanti L, Gori A, Orejas C (Springer International Publishing).
+
+```
+RScript owi_renormalize.R -i ASVtable_nf_nosc_noc_nocon.tsv -o ASVtable_tsc.tsv -c 0.97 -s 2 -e 88
+```
+
+Rename samples names from . to - in the output table ASVtable_tsc.tsv 
+
 
 ## Clustering ASVs into OTUs : VSEARCH 
 
@@ -291,7 +330,68 @@ Manually edited again the ASV_OTU_taxonomy_table.csv to create the OTU97_table.c
 - Sort by Cluster number
 - Delete all the columns from vsearch : taxonomy and ASV_ID
 
+## Refining the datasets for downstream analysis 
+
+At this stage we perform different strategies to remove sequencing errors and artifacts to explore the effects of a number of different filtering thresholds (site-occupancy vs. percentahe cut-off) in the biodiversity estimates. We also included a non-filtered table for our downstream analysis.
+
+
+### LULU 
+
+ASV/OTU table curation combining similarity and co-occurence patterns. 
+
+**Citation:** Frøslev, T. G., Kjøller, R., Bruun, H. H., Ejrnæs, R., Brunbjerg, A. K., Pietroni, C., & Hansen, A. J. (2017). Algorithm for post-clustering curation of DNA amplicon data yields reliable biodiversity estimates. Nature communications, 8(1), 1-11.
+
+```
+#After tag switching normalization
+ASVtable_tsc <- read.delim("~/ASVtable_tsc.tsv",sep = "\t", header=TRUE,as.is=TRUE, row.names = 1, check.names = FALSE)
+# delete the last 3 columns of total counts 
+ASVtable_tsc <- ASVtable_2lulu2[-c(88:90)]
+# Remove rows that sum columns are 0
+ASVtable_tsc <- ASVtable_tsc[as.logical(rowSums(ASVtable_tsc != 0)), ]
+
+####### b. Produce a match list from the  fasta file with the sequences
+
+# Extract the ref_seqs from the phyloseq object
+write.csv(refseq(ASV_nf.noSC.nocon.nc), ref_seqs.csv)
+#I convert csv to fasta in a website - rep_sequences-ASV.fasta
+
+# In the TERMINAL with BLASTN. First produce a blastdatabase with the OTUs
+#makeblastdb -in rep-sequences-ASV.fasta -parse_seqids -dbtype nucl
+# Then blast the OTUs against the database
+#blastn -db rep-sequences-ASV.fasta -outfmt '6 qseqid sseqid pident' -out match_list2.txt -qcov_hsp_perc 80 -perc_identity 84 -query rep-sequences-ASV.fasta
+
+## Back in R 
+matchlist2 <- read.table("match_list2.txt", header=FALSE,as.is=TRUE, stringsAsFactors=FALSE)
+
+### Run LULU to obtained the new OTU table
+##### WITH tag switching normalization 
+lulu_curated_result_ASV_tsc <-lulu(ASVtable_tsc, matchlist2)
+#Total of 7019 (excluding rows that sum columns are 0)
+lulu_curated_result_ASV_tsc$curated_count
+#4577
+lulu_curated_result_ASV_tsc$discarded_count
+#2442
+
+# Create a Phyloseq object with the new OTU table with LULU 
+ASVtable_lulu <- as.matrix(lulu_curated_result_ASV_tsc$curated_table)
+str(ASVtable_lulu)
+
+ASV_lulu <- otu_table(ASVtable_lulu, taxa_are_rows = TRUE)
+ASV_lulu <- phyloseq(otu_table(ASV_lulu), sample_data(ASV_nf), refseq(ASV_nf), tax_table(ASV_nf))
+```
+
+### Minimum read abundance filtering 
+
+One of the most broadly employed strategies to remove artefactual sequences is to discard sequences with copy numbers under a certain threshold.  We can do many diferent filters at this stage, we used -p-min-frequency to remove low abundance features of less than 0.003%, 0.01% and 0.05% across all samples.  
+
+```
+ADD THE SCRIPT FOR THIS 
+```
+
+
 ## Statistical analysis 
+
+Merge samples and perform linear models 
 
 The remaining Phyloseq objects are included in Resources/[Edesign.Rdata](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/Edesign.Rdata) file ready to perform next step.  
 
@@ -308,22 +408,7 @@ We run the custom R script with the Phyloseq objects created in the previous ste
 
 The results of the linear models were included in Figure 2 and Supporting information Table S2 of the manuscript "Metabarcoding hyperdiverse marine communities in temperate kelp forests: an experimental approach to inform future studies." by Vanessa Arranz, Libby Liggins and J. David Aguirre. 
 
-#merge samples and perform linear models 
 
-## Abundance filtering 
 
-We can do many diferent filters at this stage, we used -p-min-frequency to remove low abundance features of less than 0.003%, 0.01% and 0.05% across all samples, corresponding to 39, 130 and 651 sequence reads in our case. We also included a non-filtered table for our posterior analysis. 
 
-```
-# Example with 0.003% minimum number of sequences of total abundance (= 39 sequence reads)
-qiime feature-table filter-features \
-  --i-table table-dada2.qza  \
-  --p-min-frequency 39 \
-  --o-filtered-table filtered39-table-dada2.qza
-
-qiime feature-table filter-seqs
---i-data rep-seqs-dada2.qza
---i-table filtered39-table-dada2.qza
---o-filtered-data filtered39-seqs-dada2.qza
-```
 
