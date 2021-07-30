@@ -111,23 +111,6 @@ qiime metadata tabulate \
 --o-visualization denoising-stats-dada2.qzv
 ```
 
-## Abundance filtering 
-
-We can do many diferent filters at this stage, we used -p-min-frequency to remove low abundance features of less than 0.003%, 0.01% and 0.05% across all samples, corresponding to 39, 130 and 651 sequence reads in our case. We also included a non-filtered table for our posterior analysis. 
-
-```
-# Example with 0.003% minimum number of sequences of total abundance (= 39 sequence reads)
-qiime feature-table filter-features \
-  --i-table table-dada2.qza  \
-  --p-min-frequency 39 \
-  --o-filtered-table filtered39-table-dada2.qza
-
-qiime feature-table filter-seqs
---i-data rep-seqs-dada2.qza
---i-table filtered39-table-dada2.qza
---o-filtered-data filtered39-seqs-dada2.qza
-```
-
 ### Export ASV table and representative sequences 
 
 ```
@@ -173,7 +156,7 @@ We first create a blast database from MARES reference sequence database
 makeblastdb -in MARES_NOBAR_BOLD_NCBI_sl_reformatted.fasta -dbtype nucl -parse_seqids
 ```
 
-### Blast each sequences againts MARES reference sequence database : Blastn 
+### Blast each sequence against MARES reference sequences database : Blastn 
 
 Then, we performed a BLASTn against MARES reference database with an e-value of 1-60 for high-quality matches and max_target_seqs equal to 10. 
 
@@ -222,48 +205,9 @@ Save into the main folder as assigned_seqs-MARES-ex.txt
 - Generate the names with a semicolon ; separation
 - Create OTU_ID in the first column and the TaxonPAth in the other one
 - Save as .csv or .txt -> **taxonomy_edited_8ranks.txt**
+- 
 
-## Clustering ASVs into OTUs : VSEARCH 
-
-We used Vsearch to cluster the ASVs into Operational Taxonomic Units (OTUs). We chose 97% of similarity for CO1 mitochondrial region.
-
-**Citation:**  Rognes T, Flouri T, Nichols B, Quince C, Mahé F. (2016) VSEARCH: a versatile open source tool for metagenomics. PeerJ 4:e2584. https://doi.org/10.7717/peerj.2584
-
-```
-vsearch --cluster_size rep-seq-ASV.fasta  --id 0.97 --uc clustering-results.uc -msaout sequences-outs
-```
-
-Save the clustering results.uc as .csv
-
-I edited manually deleting the consensus rows C (because they are the same as the S of the clusters) -> 97clusters-ASVintoOTUS.csv
-
-Change the header names as ASV_ID to merge in R with the previously taxonomy assigned to ASVs.
-
-By running the following script in R, we created the OTU table by combining the ASV table and Vsearch clustering results (97clusters-ASVintoOTUS.csv) by ASV_ID column and then, we attached the taxonomy.  
- 
-``` {r}
-ASV_table <- read.delim("~/Desktop/Metabarcoding_CO1_kelpholdfast/ASV_table.csv")
-97clusters.ASVintoOTUS <- read.delim("~/Desktop/Metabarcoding_CO1_kelpholdfast/97clusters-ASVintoOTUS.csv")
-ASV_OTU_table <- merge(ASV_table, 97clusters.ASVintoOTUS, by.x="ASV_ID", by.y="ASV_ID")
-
-taxonomy_edited_8ranks <- read.delim("~/Desktop/Metabarcoding_CO1_kelpholdfast/taxonomy_edited_8ranks.txt")
-ASV_OTU_taxonomy_table <- merge(ASV_OTU_table, taxonomy_edited_8ranks, by.x="ASV_ID", by.y="OTU_ID")
-write.csv(ASV_OTU_taxonomy_table, file = "ASV_OTU_taxonomy_table.csv")
-```
-
-Manually edited again the ASV_OTU_taxonomy_table.csv to create the OTU97_table.csv
-- Sort by H and  S : copy all the ASV column of the S into the OTU column (they are the consensus of the clusters)
-- Sort by Cluster number
-- Delete all the columns from vsearch : taxonomy and ASV_ID
-
-## Statistical analysis 
-
-We used linear models implemented in R v3.6.1 (R Core Team, 2019) to assess how our laboratory and bioinformatic decisions influenced biodiversity estimates for the holdfast communities. 
-
-We created 4 different ASV tables by applying 3 abundance filtering thresholds and without filtering : ASVnf, ASV39, ASV130 and ASV652.
-Each of the ASV tables was converted into OTU by clustering at 97% similarity the ASVs : OTUnf, OTU39, OTU130 and OTU652. 
-
-### Create ASV/OTU Phyloseq objects 
+## Create ASV/OTU Phyloseq objects 
 
 We used a combination of Biom (in the terminal) and R Scripts, to import each ASV/OTU table in R as [phyloseq](https://joey711.github.io/phyloseq/) objects with the taxonomy associated, sample metadata and reference sequences for posterior statistical analysis. 
 
@@ -310,15 +254,76 @@ str(sampledata00)
 ASV_nf <- merge_phyloseq(ps_asv00, sampledata00)
 ```
 
+### Extract possible contaminants and tag switching normalisation 
+
+- ADD R Script for this part!!! 
+
+## Clustering ASVs into OTUs : VSEARCH 
+
+We used Vsearch to cluster the ASVs into Operational Taxonomic Units (OTUs). We chose 97% of similarity for CO1 mitochondrial region.
+
+**Citation:**  Rognes T, Flouri T, Nichols B, Quince C, Mahé F. (2016) VSEARCH: a versatile open source tool for metagenomics. PeerJ 4:e2584. https://doi.org/10.7717/peerj.2584
+
+```
+vsearch --cluster_size rep-seq-ASV.fasta  --id 0.97 --uc clustering-results.uc -msaout sequences-outs
+```
+
+Save the clustering results.uc as .csv
+
+I edited manually deleting the consensus rows C (because they are the same as the S of the clusters) -> 97clusters-ASVintoOTUS.csv
+
+Change the header names as ASV_ID to merge in R with the previously taxonomy assigned to ASVs.
+
+By running the following script in R, we created the OTU table by combining the ASV table and Vsearch clustering results (97clusters-ASVintoOTUS.csv) by ASV_ID column and then, we attached the taxonomy.  
+ 
+``` {r}
+ASV_table <- read.delim("~/Desktop/Metabarcoding_CO1_kelpholdfast/ASV_table.csv")
+97clusters.ASVintoOTUS <- read.delim("~/Desktop/Metabarcoding_CO1_kelpholdfast/97clusters-ASVintoOTUS.csv")
+ASV_OTU_table <- merge(ASV_table, 97clusters.ASVintoOTUS, by.x="ASV_ID", by.y="ASV_ID")
+
+taxonomy_edited_8ranks <- read.delim("~/Desktop/Metabarcoding_CO1_kelpholdfast/taxonomy_edited_8ranks.txt")
+ASV_OTU_taxonomy_table <- merge(ASV_OTU_table, taxonomy_edited_8ranks, by.x="ASV_ID", by.y="OTU_ID")
+write.csv(ASV_OTU_taxonomy_table, file = "ASV_OTU_taxonomy_table.csv")
+```
+
+Manually edited again the ASV_OTU_taxonomy_table.csv to create the OTU97_table.csv
+- Sort by H and  S : copy all the ASV column of the S into the OTU column (they are the consensus of the clusters)
+- Sort by Cluster number
+- Delete all the columns from vsearch : taxonomy and ASV_ID
+
+## Statistical analysis 
+
 The remaining Phyloseq objects are included in Resources/[Edesign.Rdata](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/Edesign.Rdata) file ready to perform next step.  
 
-### Extract possible contaminants, merge samples and perform linear models 
+- Edesign.cleaning : to merge samples to generate the bioinformatically merge samples. 
 
-We used a custom R script Resources/[Edesign_function.R](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/Edesign_function.R) which contains 2 functions : 
+We used linear models implemented in R v3.6.1 (R Core Team, 2019) to assess how our laboratory and bioinformatic decisions influenced biodiversity estimates for the holdfast communities. 
 
-- Edesign.cleaning : to extract contaminants and merge samples to generate the bioinformatically merge samples. 
+We created 4 different ASV tables by applying 3 abundance filtering thresholds and without filtering : ASVnf, ASV39, ASV130 and ASV652.
+Each of the ASV tables was converted into OTU by clustering at 97% similarity the ASVs : OTUnf, OTU39, OTU130 and OTU652. 
+
 - Edesign.LM.pipeline : uses the contrast matrix we used for our tests and run the linear models with the rarefied presence/absence matrix to assess how our laboratory and bioinformatic decisions influenced biodiversity estimates for the holdfast communities. 
 
 We run the custom R script with the Phyloseq objects created in the previous steps and contained in [Edesign.Rdata](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/Edesign.Rdata) file. 
 
 The results of the linear models were included in Figure 2 and Supporting information Table S2 of the manuscript "Metabarcoding hyperdiverse marine communities in temperate kelp forests: an experimental approach to inform future studies." by Vanessa Arranz, Libby Liggins and J. David Aguirre. 
+
+#merge samples and perform linear models 
+
+## Abundance filtering 
+
+We can do many diferent filters at this stage, we used -p-min-frequency to remove low abundance features of less than 0.003%, 0.01% and 0.05% across all samples, corresponding to 39, 130 and 651 sequence reads in our case. We also included a non-filtered table for our posterior analysis. 
+
+```
+# Example with 0.003% minimum number of sequences of total abundance (= 39 sequence reads)
+qiime feature-table filter-features \
+  --i-table table-dada2.qza  \
+  --p-min-frequency 39 \
+  --o-filtered-table filtered39-table-dada2.qza
+
+qiime feature-table filter-seqs
+--i-data rep-seqs-dada2.qza
+--i-table filtered39-table-dada2.qza
+--o-filtered-data filtered39-seqs-dada2.qza
+```
+
