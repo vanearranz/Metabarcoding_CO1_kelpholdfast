@@ -205,56 +205,45 @@ Save into the main folder as assigned_seqs-MARES-ex.txt
 - Generate the names with a semicolon ; separation
 - Create OTU_ID in the first column and the TaxonPAth in the other one
 - Save as .csv or .txt -> **taxonomy_edited_8ranks.txt**
-- 
 
 ## Create ASV/OTU Phyloseq objects 
 
-We used a combination of Biom (in the terminal) and R Scripts, to import each ASV/OTU table in R as [phyloseq](https://joey711.github.io/phyloseq/) objects with the taxonomy associated, sample metadata and reference sequences for posterior statistical analysis. 
+We import the ASV table in R as [phyloseq](https://joey711.github.io/phyloseq/) object with the taxonomy associated, sample metadata and reference sequences for posterior statistical analysis. 
 
-In R, combine ASV_table no filtered and taxonomy associated:
 ```
 library("phyloseq")
-library("biomformat")
 
 # ASV table without filtering 
 
-asv_table_nf <- read_delim("ASVtable.tsv", "\t", escape_double = FALSE, trim_ws = TRUE)
-taxonomy <- read_delim("taxonomy_edited_8ranks.txt",  "\t", escape_double = FALSE, trim_ws = TRUE, col_names = TRUE)
-asvNF_taxonomy <- merge(asv_table_nf, taxonomy, by.x ="OTU_ID", by.y ="OTU_ID")
-write.table(asvNF_taxonomy, "ASVnf_taxonomy.txt", sep="\t", row.names=FALSE) 
-```
+ASV_table <- read_delim("ASVtable.tsv", "\t", escape_double = FALSE, trim_ws = TRUE)
 
-In the terminal, convert  the .txt into [Biom format](https://biom-format.org/) with the taxonomy as metadata 
-```
-biom convert -i ASVnf_taxonomy.txt -o asv.table.biom --to-json --table-type="OTU table" --process-obs-metadata taxonomy
-```
+## Add the taxonomy 
 
-Back in R, import the Biom table with taxonomy attached and create the phyloseq object
-```
-library("biomformat")
-library("Biostrings")
+tax_table_new_edited_8ranks <- read.delim("/Volumes/NO NAME/eDNA revisions/tax_table_new_edited_8ranks.txt", row.names=1)
+str(tax_table_new_edited_8ranks)
 
-x0 =read_biom("asv.table.biom")
-#Add ASV table
-asvmat00 = as(biom_data(x0), "matrix")
-ASV00 = otu_table(asvmat00, taxa_are_rows=TRUE)
-#Add taxonomy 
-taxmat00 = as.matrix(observation_metadata(x0), rownames.force=TRUE)
-TAX00 = tax_table(taxmat00)
+matrix.please<-function(x) {
+  m<-as.matrix(x[,-1])
+  rownames(m)<-x[,1]
+  m
+}
+newtaxonomy <-matrix.please(tax_table_newtaxonomy_8ranks)
+
+tax_table_newtaxonomy_8ranks <- tax_table(newtaxonomy)
+
+
 # Add the reference sequences
 reference_seqs0 <- readDNAStringSet(file = "rep-sequences-nofilt.fasta",format = "fasta", nrec = -1L, skip = 0L, seek.first.rec = FALSE, use.names = TRUE)
 REFS00 = refseq(reference_seqs0)
-
-# Create the phyloseq object
-ps_asv00 = phyloseq(OTU00, TAX00, REFS00)
 
 # Add the sample data file 
 sample_data_batches <- read.csv("~/Desktop/Metabarcoding_CO1_kelpholdfast/sample_data_11varX96samples.csv")
 sampledata00 = sample_data(data.frame(sample_data_batches, row.names = sample_names(ps_asv00)))
 str(sampledata00)
 
-# Merge with phyloseq object 
-ASV_nf <- merge_phyloseq(ps_asv00, sampledata00)
+# Create the phyloseq object 
+ASV <- phyloseq(otu_table(ASV_nofilter), sample_data(sampledata00), refseq(reference_seqs0), tax_table(tax_table_newtaxonomy_8ranks))
+
 ```
 
 ## Extract possible contaminants and tag switching normalisation 
@@ -269,7 +258,7 @@ library("phyloseq")
 library("decontam")
 
 #Remove Seawater control 
-ASV_nf.noSC <-  subset_samples(ASV_nf, Sample != "SC")
+ASV_nf.noSC <-  subset_samples(ASV, Sample != "SC")
 
 # Identify and extract blank contaminants using the negative controls. The frequency and prevalence probabilities are combined with Fisher's method and used to identify contaminants ###
 
@@ -294,7 +283,23 @@ Tag switching correction. We used the R Script included in Resources/owi_renorma
 RScript owi_renormalize.R -i ASVtable_nf_nosc_noc_nocon.tsv -o ASVtable_tsc.tsv -c 0.97 -s 2 -e 88
 ```
 
-Rename samples names from . to - in the output table ASVtable_tsc.tsv 
+Rename samples names from . to - in the output table ASVtable_tsc.tsv. In R : 
+
+```
+#After tag switching normalization
+ASVtable_tsc <- read.delim("~/ASVtable_tsc.tsv",sep = "\t", header=TRUE,as.is=TRUE, row.names = 1, check.names = FALSE)
+# delete the last 3 columns of total counts 
+ASVtable_tsc <- ASVtable_2lulu2[-c(88:90)]
+# Remove rows that sum columns are 0
+ASVtable_tsc <- ASVtable_tsc[as.logical(rowSums(ASVtable_tsc != 0)), ]
+
+
+ASV_nofilter <- otu_table(ASVtable_tsc_all, taxa_are_rows = TRUE)
+
+# Create Phyloseq object with ASV table after tag switching normalisation 
+ASV_nofilter <- phyloseq(otu_table(ASV_nofilter), sample_data(sampledata00), refseq(reference_seqs0), tax_table(tax_table_newtaxonomy_8ranks))
+
+```
 
 
 ## Clustering ASVs into OTUs : VSEARCH 
@@ -304,31 +309,46 @@ We used Vsearch to cluster the ASVs into Operational Taxonomic Units (OTUs). We 
 **Citation:**  Rognes T, Flouri T, Nichols B, Quince C, Mahé F. (2016) VSEARCH: a versatile open source tool for metagenomics. PeerJ 4:e2584. https://doi.org/10.7717/peerj.2584
 
 ```
-vsearch --cluster_size rep-seq-ASV.fasta  --id 0.97 --uc clustering-results.uc -msaout sequences-outs
+vsearch --cluster_size rep-sequences-ASV.fasta  --id 0.97 --uc clustering-results.uc -msaout sequences-outs
 ```
 
 Save the clustering results.uc as .csv
 
-I edited manually deleting the consensus rows C (because they are the same as the S of the clusters) -> 97clusters-ASVintoOTUS.csv
+I edited manually deleting the consensus rows C (because they are the same as the S of the clusters) -> clustering-results.csv
 
 Change the header names as ASV_ID to merge in R with the previously taxonomy assigned to ASVs.
 
-By running the following script in R, we created the OTU table by combining the ASV table and Vsearch clustering results (97clusters-ASVintoOTUS.csv) by ASV_ID column and then, we attached the taxonomy.  
+By running the following script in R, we created the OTU table by combining the previous ASV table and Vsearch clustering results by ASV_ID column and then.  
  
 ``` {r}
-ASV_table <- read.delim("~/Desktop/Metabarcoding_CO1_kelpholdfast/ASV_table.csv")
-97clusters.ASVintoOTUS <- read.delim("~/Desktop/Metabarcoding_CO1_kelpholdfast/97clusters-ASVintoOTUS.csv")
-ASV_OTU_table <- merge(ASV_table, 97clusters.ASVintoOTUS, by.x="ASV_ID", by.y="ASV_ID")
-
-taxonomy_edited_8ranks <- read.delim("~/Desktop/Metabarcoding_CO1_kelpholdfast/taxonomy_edited_8ranks.txt")
-ASV_OTU_taxonomy_table <- merge(ASV_OTU_table, taxonomy_edited_8ranks, by.x="ASV_ID", by.y="OTU_ID")
-write.csv(ASV_OTU_taxonomy_table, file = "ASV_OTU_taxonomy_table.csv")
+clustering.results <- read.csv("~/Desktop/Edesign manuscript/eDNA revisions/clustering-results.csv")
+ASV_OTU_table <- merge(ASVtable_tsc_all_clean, clustering.results, by.x="ASV_ID", by.y="ASV_ID")
+write.csv(ASV_OTU_table, file = "ASV_OTU_table.csv")
 ```
 
-Manually edited again the ASV_OTU_taxonomy_table.csv to create the OTU97_table.csv
+Manually edited again the ASV_OTU_table.csv to create the ASV_OTU_tabletocollapse.csv
 - Sort by H and  S : copy all the ASV column of the S into the OTU column (they are the consensus of the clusters)
 - Sort by Cluster number
 - Delete all the columns from vsearch : taxonomy and ASV_ID
+
+```
+OTU_nofilter_tocollapse <-  read.csv("~/Desktop/Edesign manuscript/eDNA revisions/ASV_OTU_tabletocollapse.csv", check.names = FALSE)
+OTU_nofilter_tocollapse$OUT97_ID <- as.factor(OTU_nofilter_tocollapse$OUT97_ID)
+#Collapse the OTUs with the same name (all ASVs that were collapse into OTUs)
+OTU_nofilter_collapsed <- OTU_nofilter_tocollapse %>% group_by(OUT97_ID) %>% summarise_all(funs(sum))
+
+OTU_nofilter_collapsed$OUT97_ID <- as.character(OTU_nofilter_collapsed$OUT97_ID)
+OTU_nofilter_collapsed <- as.data.frame(OTU_nofilter_collapsed)
+rownames(OTU_nofilter_collapsed) <- OTU_nofilter_collapsed[,1]
+OTUtable_tsc <- OTU_nofilter_collapsed[,-1]
+
+
+# Create Phyloseq object with OTU table after tag switching normalisation 
+OTU_nofilter <- otu_table(OTUtable_tsc, taxa_are_rows = TRUE)
+
+OTU_nofilter <- phyloseq(otu_table(OTU_nofilter), sample_data(sampledata00), refseq(reference_seqs0), tax_table(tax_table_newtaxonomy_8ranks))
+
+```
 
 ## Refining the datasets for downstream analysis 
 
@@ -342,25 +362,37 @@ ASV/OTU table curation combining similarity and co-occurence patterns.
 **Citation:** Frøslev, T. G., Kjøller, R., Bruun, H. H., Ejrnæs, R., Brunbjerg, A. K., Pietroni, C., & Hansen, A. J. (2017). Algorithm for post-clustering curation of DNA amplicon data yields reliable biodiversity estimates. Nature communications, 8(1), 1-11.
 
 ```
-#After tag switching normalization
-ASVtable_tsc <- read.delim("~/ASVtable_tsc.tsv",sep = "\t", header=TRUE,as.is=TRUE, row.names = 1, check.names = FALSE)
-# delete the last 3 columns of total counts 
-ASVtable_tsc <- ASVtable_2lulu2[-c(88:90)]
-# Remove rows that sum columns are 0
-ASVtable_tsc <- ASVtable_tsc[as.logical(rowSums(ASVtable_tsc != 0)), ]
+###  LULU : ASV/OTU table curation based on similarity and co-occurence rates (Froslev et al. 2017)
+library("magrittr")
+library("lulu")
 
-####### b. Produce a match list from the  fasta file with the sequences
+# I need : 
+######## a. ASV/OTU table 
+
+# ASV table
+ASVtable_tsc 
+#OTU table 
+OTUtable_tsc
+####### b. Produce a match list from the fasta file with the sequences
 
 # Extract the ref_seqs from the phyloseq object
 write.csv(refseq(ASV_nf.noSC.nocon.nc), ref_seqs.csv)
 #I convert csv to fasta in a website - rep_sequences-ASV.fasta
+```
 
-# In the TERMINAL with BLASTN. First produce a blastdatabase with the OTUs
-#makeblastdb -in rep-sequences-ASV.fasta -parse_seqids -dbtype nucl
-# Then blast the OTUs against the database
-#blastn -db rep-sequences-ASV.fasta -outfmt '6 qseqid sseqid pident' -out match_list2.txt -qcov_hsp_perc 80 -perc_identity 84 -query rep-sequences-ASV.fasta
+In the TERMINAL with BLASTN. First produce a blastdatabase with the ASV/OTUs reference sequences 
 
-## Back in R 
+```
+makeblastdb -in rep-sequences-ASV.fasta -parse_seqids -dbtype nucl
+```
+Then blast the OTUs against the database
+```
+blastn -db rep-sequences-ASV.fasta -outfmt '6 qseqid sseqid pident' -out match_list2.txt -qcov_hsp_perc 80 -perc_identity 84 -query rep-sequences-ASV.fasta
+```
+
+Back in R 
+
+```
 matchlist2 <- read.table("match_list2.txt", header=FALSE,as.is=TRUE, stringsAsFactors=FALSE)
 
 ### Run LULU to obtained the new OTU table
