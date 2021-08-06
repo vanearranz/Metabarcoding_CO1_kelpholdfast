@@ -212,14 +212,17 @@ We import the ASV table in R as [phyloseq](https://joey711.github.io/phyloseq/) 
 
 ```
 library("phyloseq")
+library("readr")
+library("decontam")
 
 # ASV table without filtering 
 
-ASV_table <- read_delim("ASVtable.tsv", "\t", escape_double = FALSE, trim_ws = TRUE)
+ASV_table <- read.csv("~/Desktop/Edesign manuscript/eDNA revisions/ASV_table1.csv", row.names = 1)
+ASV_table <- otu_table(as.matrix(ASV_table1), taxa_are_rows = TRUE)
 
-## Add the taxonomy 
+## Add the taxonomy assigned 
 
-tax_table_new_edited_8ranks <- read.delim("/Volumes/NO NAME/eDNA revisions/tax_table_new_edited_8ranks.txt", row.names=1)
+tax_table_new_edited_8ranks <- read.delim("tax_table_new_edited_8ranks.txt")
 str(tax_table_new_edited_8ranks)
 
 matrix.please<-function(x) {
@@ -227,22 +230,19 @@ matrix.please<-function(x) {
   rownames(m)<-x[,1]
   m
 }
-newtaxonomy <-matrix.please(tax_table_newtaxonomy_8ranks)
-
+newtaxonomy <-matrix.please(tax_table_new_edited_8ranks)
 tax_table_newtaxonomy_8ranks <- tax_table(newtaxonomy)
-
 
 # Add the reference sequences
 reference_seqs0 <- readDNAStringSet(file = "rep-sequences-nofilt.fasta",format = "fasta", nrec = -1L, skip = 0L, seek.first.rec = FALSE, use.names = TRUE)
-REFS00 = refseq(reference_seqs0)
 
 # Add the sample data file 
-sample_data_batches <- read.csv("~/Desktop/Metabarcoding_CO1_kelpholdfast/sample_data_11varX96samples.csv")
-sampledata00 = sample_data(data.frame(sample_data_batches, row.names = sample_names(ps_asv00)))
-str(sampledata00)
+sample_data_96samples <- read.csv("sample_data_5X96samples.csv")
+sampledata = sample_data(data.frame(sample_data_96samples, row.names = sample_names(ASV_table)))
+str(sampledata)
 
 # Create the phyloseq object 
-ASV <- phyloseq(otu_table(ASV_nofilter), sample_data(sampledata00), refseq(reference_seqs0), tax_table(tax_table_newtaxonomy_8ranks))
+ASV <- phyloseq(otu_table(ASV_table), sample_data(sampledata), refseq(reference_seqs0), tax_table(tax_table_newtaxonomy_8ranks))
 
 ```
 
@@ -272,7 +272,6 @@ ASV_nf.noSC.nocon <- prune_taxa(!contam.comb.all$contaminant, ASV_nf.noSC)
 ASV_nf.noSC.nocon.nc <- subset_samples(ASV_nf.noSC.nocon, Sample_or_Control=="True Sample")
 
 write.csv(otu_table(ASV_nf.noSC.nocon.nc),file = "ASVtable_nf_nosc_noc_nocon.csv")
-
 ```
 
 Tag switching correction. We used the R Script included in Resources/owi_renormalize.R ADD THE SCRIPT THERE!!!! (https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/owi_renormalise.R) It sort the samples by abundance of each ASV and eliminate the reads of the samples corresponding to a cumulative frequency of less than 3% for each particular ASV . 
@@ -287,18 +286,18 @@ Rename samples names from . to - in the output table ASVtable_tsc.tsv. In R :
 
 ```
 #After tag switching normalization
-ASVtable_tsc <- read.delim("~/ASVtable_tsc.tsv",sep = "\t", header=TRUE,as.is=TRUE, row.names = 1, check.names = FALSE)
+ASVtable_tsc_all <- read.delim("ASVtable_tsc.tsv",sep = "\t", header=TRUE,as.is=TRUE, row.names = 1, check.names = FALSE)
+str(ASVtable_tsc_all)
 # delete the last 3 columns of total counts 
-ASVtable_tsc <- ASVtable_2lulu2[-c(88:90)]
+ASVtable_tsc_all <- ASVtable_tsc_all[-c(88:90)]
+str(ASVtable_tsc_all)
 # Remove rows that sum columns are 0
-ASVtable_tsc <- ASVtable_tsc[as.logical(rowSums(ASVtable_tsc != 0)), ]
-
+ASVtable_tsc_all <- ASVtable_tsc_all[as.logical(rowSums(ASVtable_tsc != 0)), ]
+str(ASVtable_tsc_all)
 
 ASV_nofilter <- otu_table(ASVtable_tsc_all, taxa_are_rows = TRUE)
 
-# Create Phyloseq object with ASV table after tag switching normalisation 
-ASV_nofilter <- phyloseq(otu_table(ASV_nofilter), sample_data(sampledata00), refseq(reference_seqs0), tax_table(tax_table_newtaxonomy_8ranks))
-
+ASV_nofilter <- phyloseq(otu_table(ASV_nofilter), sample_data(ASV_nf.noSC.nocon.nc), refseq(ASV_nf.noSC.nocon.nc), tax_table(ASV_nf.noSC.nocon.nc))
 ```
 
 
@@ -344,8 +343,8 @@ OTUtable_tsc <- OTU_nofilter_collapsed[,-1]
 
 
 # Create Phyloseq object with OTU table after tag switching normalisation 
-OTU_nofilter <- otu_table(OTUtable_tsc, taxa_are_rows = TRUE)
 
+OTU_nofilter <- otu_table(OTUtable_tsc, taxa_are_rows = TRUE)
 OTU_nofilter <- phyloseq(otu_table(OTU_nofilter), sample_data(sampledata00), refseq(reference_seqs0), tax_table(tax_table_newtaxonomy_8ranks))
 
 ```
@@ -373,19 +372,22 @@ library("lulu")
 ASVtable_tsc 
 #OTU table 
 OTUtable_tsc
+
 ####### b. Produce a match list from the fasta file with the sequences
 
 # Extract the ref_seqs from the phyloseq object
 write.csv(refseq(ASV_nf.noSC.nocon.nc), ref_seqs.csv)
-#I convert csv to fasta in a website - rep_sequences-ASV.fasta
+write.csv(refseq(OTU_nofilter), ref_seqs-OTU.csv)
+
+# Convert csv to fasta in a website - rep_sequences-ASV.fasta
 ```
 
-In the TERMINAL with BLASTN. First produce a blastdatabase with the ASV/OTUs reference sequences 
+In the TERMINAL with BLASTN. First produce a blastdatabase with the ASV/OTUs reference sequences (example here only with ASVs)
 
 ```
 makeblastdb -in rep-sequences-ASV.fasta -parse_seqids -dbtype nucl
 ```
-Then blast the OTUs against the database
+Then blast the ASVs against the database
 ```
 blastn -db rep-sequences-ASV.fasta -outfmt '6 qseqid sseqid pident' -out match_list2.txt -qcov_hsp_perc 80 -perc_identity 84 -query rep-sequences-ASV.fasta
 ```
@@ -393,39 +395,70 @@ blastn -db rep-sequences-ASV.fasta -outfmt '6 qseqid sseqid pident' -out match_l
 Back in R 
 
 ```
-matchlist2 <- read.table("match_list2.txt", header=FALSE,as.is=TRUE, stringsAsFactors=FALSE)
+matchlistASV <- read.table("match_list-ASV.txt", header=FALSE,as.is=TRUE, stringsAsFactors=FALSE)
 
-### Run LULU to obtained the new OTU table
-##### WITH tag switching normalization 
-lulu_curated_result_ASV_tsc <-lulu(ASVtable_tsc, matchlist2)
-#Total of 7019 (excluding rows that sum columns are 0)
-lulu_curated_result_ASV_tsc$curated_count
-#4577
-lulu_curated_result_ASV_tsc$discarded_count
-#2442
+matchlistOTU <- read.table("match_list-OTU.txt", header=FALSE,as.is=TRUE, stringsAsFactors=FALSE)
+
+### Run LULU to obtained the ASV/OTU table
+lulu_curated_result_ASV_tsc <-lulu(ASVtable_tsc, matchlistASV)
 
 # Create a Phyloseq object with the new OTU table with LULU 
 ASVtable_lulu <- as.matrix(lulu_curated_result_ASV_tsc$curated_table)
-str(ASVtable_lulu)
 
 ASV_lulu <- otu_table(ASVtable_lulu, taxa_are_rows = TRUE)
-ASV_lulu <- phyloseq(otu_table(ASV_lulu), sample_data(ASV_nf), refseq(ASV_nf), tax_table(ASV_nf))
+ASV_lulu <- phyloseq(otu_table(ASV_lulu), sample_data(ASV_nofilter), refseq(ASV_nofilter), tax_table(ASV_nofilter))
 ```
 
 ### Minimum read abundance filtering 
 
-One of the most broadly employed strategies to remove artefactual sequences is to discard sequences with copy numbers under a certain threshold.  We can do many diferent filters at this stage, we used -p-min-frequency to remove low abundance features of less than 0.003%, 0.01% and 0.05% across all samples.  
+One of the most broadly employed strategies to remove artefactual sequences is to discard sequences with copy numbers under a certain threshold. 
+We used 3 different minimum read abundance thresholds across all samples to remove low abundance features of less than 0.003%, 0.01% and 0.05% across all samples.  
 
 ```
-ADD THE SCRIPT FOR THIS 
-```
+#### 0.003% minimum read abundance 
 
+x = taxa_sums(ASV_nofilter)
+keepTaxa_f1 = taxa_names(ASV_nofilter)[which((x / sum(x)) > 0.00003)]
+ASV_f1 = prune_taxa(keepTaxa_f1, ASV_nofilter)
+ASV_f1
+
+y = taxa_sums(OTU_nofilter)
+keepOTUTaxa_f1 = taxa_names(OTU_nofilter)[which((y / sum(y)) > 0.00003)]
+OTU_f1 = prune_taxa(keepOTUTaxa_f1, OTU_nofilter)
+OTU_f1
+
+#### 0.01 % minimum read abundance 
+
+keepTaxa_f2 = taxa_names(ASV_nofilter)[which((x / sum(x)) > 0.0001)]
+ASV_f2 = prune_taxa(keepTaxa_f2, ASV_nofilter)
+ASV_f2
+
+keepOTUTaxa_f2 = taxa_names(OTU_nofilter)[which((y / sum(y)) > 0.0001)]
+OTU_f2 = prune_taxa(keepOTUTaxa_f2, OTU_nofilter)
+OTU_f2
+
+#### 0.05% minimum read abundance 
+
+keepTaxa_f3 = taxa_names(ASV_nofilter)[which((x / sum(x)) > 0.0005)]
+ASV_f3 = prune_taxa(keepTaxa_f3, ASV_nofilter)
+ASV_f3
+
+keepOTUTaxa_f3 = taxa_names(OTU_nofilter)[which((y / sum(y)) > 0.0005)]
+OTU_f3 = prune_taxa(keepOTUTaxa_f3, OTU_nofilter)
+OTU_f3
+```
 
 ## Statistical analysis 
 
-Merge samples and perform linear models 
+We created 5 different ASV tables and 5 OTU tables by applying different strategies to remove possible contaminants. 
 
-The remaining Phyloseq objects are included in Resources/[Edesign.Rdata](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/Edesign.Rdata) file ready to perform next step.  
+1. NO filtering : ASVnf/OTUnf
+2. LULU filtering ASVlulu/OTUlulu  
+3. 0.003% Minimum read abundance : ASVf1/OTUf1
+4. 0.01% Minimum read abundance : AVf2/OTUf2 
+5. 0.05% Minimum read abundance : ASVf3/OTUf3
+
+The Phyloseq objects of these tables and metadata are included in Resources/[Edesign.Rdata](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/Edesign.Rdata) file ready to perform next analytical steps.  
 
 - Edesign.cleaning : to merge samples to generate the bioinformatically merge samples. 
 
@@ -439,8 +472,4 @@ Each of the ASV tables was converted into OTU by clustering at 97% similarity th
 We run the custom R script with the Phyloseq objects created in the previous steps and contained in [Edesign.Rdata](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/Edesign.Rdata) file. 
 
 The results of the linear models were included in Figure 2 and Supporting information Table S2 of the manuscript "Metabarcoding hyperdiverse marine communities in temperate kelp forests: an experimental approach to inform future studies." by Vanessa Arranz, Libby Liggins and J. David Aguirre. 
-
-
-
-
 
