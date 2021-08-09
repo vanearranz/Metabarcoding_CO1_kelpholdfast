@@ -460,7 +460,7 @@ We created 5 different ASV tables and 5 OTU tables by applying different strateg
 
 The Phyloseq objects of these tables and additional files are included in Resources/[Edesign.Rdata](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/Edesign.Rdata) file ready to perform the following analytical steps using the R Scripts provided.  
 
-**[Results](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Edesign_functions_results.R) **
+**[Results](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Edesign_functions_results.R)**
 
 We used linear models implemented in R v4.0.1 (R Core Team, 2020) to assess how our laboratory and bioinformatic decisions influenced biodiversity estimates for the holdfast communities.
 
