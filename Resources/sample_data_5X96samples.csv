@@ -1,0 +1,97 @@
+Concentration,Sample,Edesign,MTB,Sample_or_Control
+12.6,EC,yes,yes,Control
+7.56,EC,yes,yes,Control
+12.3,EC,yes,yes,Control
+11.6,MTB01,no,yes,True Sample
+14.2,MTB02,no,yes,True Sample
+13.96,MTB03,no,yes,True Sample
+14,MTB04,no,yes,True Sample
+12.68,MTB05,yes,yes,True Sample
+9.16,MTB05,yes,no,True Sample
+14.4,MTB05,yes,no,True Sample
+12.8,MTB05,yes,no,True Sample
+11.6,MTB05,yes,no,True Sample
+13.6,MTB06,no,yes,True Sample
+14.2,MTB07,no,yes,True Sample
+14.2,MTB08,no,yes,True Sample
+13.24,MTB09,yes,yes,True Sample
+9.98,MTB09,yes,no,True Sample
+4.48,MTB09,yes,no,True Sample
+10.9,MTB09,yes,no,True Sample
+17.7,MTB09,yes,no,True Sample
+10.8,MTB09,yes,no,True Sample
+10.8,MTB09,yes,no,True Sample
+3.98,MTB09,yes,no,True Sample
+3.75,MTB09,yes,no,True Sample
+10.1,MTB09,yes,no,True Sample
+10.1,MTB09,yes,no,True Sample
+5.94,MTB09,yes,no,True Sample
+12,MTB09,yes,no,True Sample
+11.8,MTB09,yes,no,True Sample
+7.2,MTB09,yes,no,True Sample
+12.5,MTB10,no,yes,True Sample
+13.4,MTB11,yes,yes,True Sample
+20.4,MTB11,yes,no,True Sample
+9.76,MTB11,yes,no,True Sample
+13.4,MTB11,yes,no,True Sample
+14,MTB11,yes,no,True Sample
+1,MTB11,yes,no,True Sample
+10.7,MTB11,yes,no,True Sample
+12.2,MTB11,yes,no,True Sample
+14,MTB11,yes,no,True Sample
+13.68,MTB12,no,yes,True Sample
+13.13,MTB13,no,yes,True Sample
+13.52,MTB14,yes,yes,True Sample
+13.3,MTB14,yes,no,True Sample
+12.6,MTB14,yes,no,True Sample
+12.7,MTB14,yes,no,True Sample
+14.2,MTB14,yes,no,True Sample
+11,MTB15,no,yes,True Sample
+13.96,MTB16,no,yes,True Sample
+13.87,MTB17,no,yes,True Sample
+13,MTB18,no,yes,True Sample
+15.67,MTB19,no,yes,True Sample
+12.64,MTB20,yes,yes,True Sample
+9.92,MTB20,yes,no,True Sample
+9.68,MTB20,yes,no,True Sample
+7.42,MTB20,yes,no,True Sample
+13.8,MTB20,yes,no,True Sample
+11.56,MTB21,yes,yes,True Sample
+9.44,MTB21,yes,no,True Sample
+7.44,MTB21,yes,no,True Sample
+14.3,MTB21,yes,no,True Sample
+13.1,MTB21,yes,no,True Sample
+13.9,MTB21,yes,no,True Sample
+13.2,MTB21,yes,no,True Sample
+5.85,MTB21,yes,no,True Sample
+6.66,MTB21,yes,no,True Sample
+10,MTB21,yes,no,True Sample
+11.7,MTB21,yes,no,True Sample
+14.7,MTB21,yes,no,True Sample
+19.6,MTB21,yes,no,True Sample
+11.4,MTB21,yes,no,True Sample
+6.96,MTB21,yes,no,True Sample
+12,MTB22,no,yes,True Sample
+15,MTB23,no,yes,True Sample
+13.2,MTB24,no,yes,True Sample
+13.25,MTB25,no,yes,True Sample
+13.5,MTB25,no,yes,True Sample
+12.35,MTB26,no,yes,True Sample
+13.3,MTB27,yes,yes,True Sample
+12,MTB27,yes,no,True Sample
+16.3,MTB27,yes,no,True Sample
+14.9,MTB27,yes,no,True Sample
+13,MTB27,yes,no,True Sample
+14.75,MTB28,no,yes,True Sample
+13.45,MTB29,no,yes,True Sample
+14.36,MTB30,yes,yes,True Sample
+13.9,MTB30,yes,no,True Sample
+15.3,MTB30,yes,no,True Sample
+12,MTB30,yes,no,True Sample
+16.8,MTB30,yes,no,True Sample
+5.1,PC,yes,yes,Control
+3.88,PC,yes,yes,Control
+5.38,PC,yes,yes,Control
+2.82,PC,yes,yes,Control
+3.78,PC,yes,yes,Control
+6.2,SC,yes,yes,Control

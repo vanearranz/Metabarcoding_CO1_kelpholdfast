@@ -1,0 +1,306 @@
+Phylum	Class	Order	Family	Genus	Species
+Annelida	Polychaeta	Sabellida	Sabellidae	Branchiomma	Branchiomma bairdi
+Annelida	Polychaeta	Haplodrili	Dinophilidae	Dimorphilus	Dimorphilus gyrociliatus
+Annelida	Clitellata	Hirudinida	Glossiphoniidae	Glossiphonia	Glossiphonia complanata
+Annelida	Polychaeta	Phyllodocida	Syllidae	Myrianida	Myrianida australiensis
+Annelida	Polychaeta	Phyllodocida	Syllidae	Odontosyllis	Odontosyllis phosphorea
+Annelida	Polychaeta	Phyllodocida	Syllidae	Odontosyllis	Odontosyllis phosphorea
+Annelida	Polychaeta	Phyllodocida	Syllidae	Parahaplosyllis	Parahaplosyllis kumpol
+Annelida	Polychaeta	Sabellida	Sabellidae	Parasabella	Parasabella aberrans
+Annelida	Polychaeta	Terebellida	Terebellidae	Polycirrus	Polycirrus medusa
+Annelida	Polychaeta	Phyllodocida	Polynoidae	Polyeunoa	Polyeunoa laevis
+Annelida	Polychaeta	Phyllodocida	Syllidae	Syllis	Syllis crassicirrata
+Annelida	Polychaeta	Phyllodocida	Syllidae	Syllis	Syllis gracilis
+Annelida	Polychaeta	Phyllodocida	Syllidae	Trypanosyllis	Trypanosyllis taboadai
+Annelida	Polychaeta	Phyllodocida			
+Annelida	Polychaeta	Terebellida	Terebellidae		
+Annelida	Polychaeta	Phyllodocida	Nereididae	Neanthes	
+Annelida	Polychaeta	Terebellida	Terebellidae		
+Annelida	Polychaeta	Phyllodocida	Polynoidae		
+Annelida	Polychaeta	Terebellida	Terebellidae		
+Annelida	Polychaeta	Spionida	Spionidae		
+Annelida	Polychaeta	Phyllodocida	Syllidae	Haplosyllis	
+Annelida	Polychaeta	Phyllodocida	Phyllodocidae		
+Annelida	Polychaeta	Spionida	Chaetopteridae	Phyllochaetopterus	
+Annelida	Polychaeta	Phyllodocida	Chrysopetalidae	Paleanotus	
+Annelida	Polychaeta	Phyllodocida	Phyllodocidae		
+Annelida	Polychaeta	Terebellida	Terebellidae	Polycirrus	
+Annelida	Polychaeta	Terebellida	Terebellidae	Amaeana	
+Annelida	Polychaeta	Orbiniidae			
+Annelida	Polychaeta	Eunicida	Eunicidae	Marphysa	
+Annelida					
+Arthropoda	Pycnogonida	Pantopoda	Ammotheidae	Achelia	Achelia assimilis
+Arthropoda	Malacostraca	Decapoda	Alpheidae	Alpheus	Alpheus bahamensis
+Arthropoda	Hexanauplia	Sessilia	Balanidae	Balanus	Balanus trigonus
+Arthropoda	Malacostraca	Amphipoda	Ampithoidae	Cymadusa	Cymadusa compta
+Arthropoda	Malacostraca	Amphipoda	Ischyroceridae	Ericthonius	Ericthonius brasiliensis
+Arthropoda	Malacostraca	Amphipoda	Gammaridae	Gammarus	Gammarus nekkensis
+Arthropoda	Malacostraca	Isopoda	Limnoriidae	Limnoria	Limnoria segnis
+Arthropoda	Malacostraca	Isopoda	Sphaeromatidae	Paracerceis	Paracerceis cordata
+Arthropoda	Branchiopoda	Diplostraca	Sididae	Penilia	Penilia avirostris
+Arthropoda	Malacostraca	Isopoda	Idoteidae	Pentidotea	Pentidotea stenops
+Arthropoda	Arachnida	Trombidiformes	Eupodidae		
+Arthropoda	Arachnida	Sarcoptiformes	Oppiidae		
+Arthropoda	Hexanauplia	Calanoida			
+Arthropoda	Hexanauplia	Calanoida	Calocalanidae	Calocalanus	
+Arthropoda	Hexanauplia	Calanoida			
+Arthropoda	Hexanauplia	Harpacticoida	Ectinosomatidae		
+Arthropoda	Hexanauplia	Harpacticoida	Cylindropsyllidae	Stenocaropsis	
+Arthropoda	Hexanauplia	Cyclopoida	Cyclopidae		
+Arthropoda	Hexanauplia	Harpacticoida	Ameiridae		
+Arthropoda	Hexanauplia				
+Arthropoda	Insecta	Diptera			
+Arthropoda	Insecta	Diptera	Ceratopogonidae		
+Arthropoda	Insecta	Diptera			
+Arthropoda	Insecta	Diptera			
+Arthropoda	Insecta	Diptera			
+Arthropoda	Insecta	Diptera	Chironomidae		
+Arthropoda	Insecta	Diptera			
+Arthropoda	Insecta	Diptera			
+Arthropoda	Insecta				
+Arthropoda	Insecta	Diptera			
+Arthropoda	Insecta				
+Arthropoda	Insecta	Diptera			
+Arthropoda	Insecta	Diptera			
+Arthropoda	Insecta				
+Arthropoda	Insecta	Diptera			
+Arthropoda	Insecta	Diptera			
+Arthropoda	Insecta	Diptera			
+Arthropoda	Insecta				
+Arthropoda	Malacostraca	Isopoda	Sphaeromatidae	Cymodoce	
+Arthropoda	Malacostraca	Amphipoda			
+Arthropoda	Malacostraca	Amphipoda			
+Arthropoda	Malacostraca	Amphipoda			
+Arthropoda	Malacostraca	Decapoda			
+Arthropoda	Malacostraca	Amphipoda			
+Arthropoda	Malacostraca	Amphipoda			
+Arthropoda	Malacostraca	Amphipoda	Corophiidae	Corophium	
+Arthropoda	Malacostraca	Amphipoda			
+Arthropoda	Malacostraca	Isopoda			
+Arthropoda	Malacostraca	Amphipoda			
+Arthropoda	Malacostraca	Amphipoda			
+Arthropoda	Ostracoda	Podocopida			
+Arthropoda	Ostracoda	Myodocopida			
+Arthropoda					
+Arthropoda					
+Arthropoda					
+Arthropoda					
+Arthropoda					
+Arthropoda					
+Arthropoda					
+Arthropoda					
+Arthropoda					
+Arthropoda					
+Arthropoda					
+Arthropoda					
+Arthropoda					
+Arthropoda					
+Arthropoda					
+Arthropoda					
+Arthropoda					
+Arthropoda					
+Arthropoda					
+Ascomycota					
+Bacillariophyta	Coscinodiscophyceae	Chaetocerotales	Chaetocerotaceae	Chaetoceros	Chaetoceros socialis
+Bacillariophyta	Coscinodiscophyceae	Chaetocerotales	Chaetocerotaceae	Chaetoceros	Chaetoceros socialis
+Bacillariophyta	Bacillariophyceae	Bacillariales	Bacillariaceae	Cylindrotheca	Cylindrotheca closterium
+Bacillariophyta	Bacillariophyceae	Bacillariales	Bacillariaceae	Fragilariopsis	Fragilariopsis cylindrus
+Bacillariophyta	Mediophyceae	Cymatosirales	Cymatosiraceae	Minutocellus	Minutocellus polymorphus
+Bacillariophyta	Mediophyceae	Cymatosirales	Cymatosiraceae	Minutocellus	Minutocellus polymorphus
+Bacillariophyta	Bacillariophyceae	Bacillariales	Bacillariaceae	Nitzschia	Nitzschia alba
+Bacillariophyta	Bacillariophyceae	Naviculales	Pinnulariaceae	Pinnularia	Pinnularia acrosphaeria
+Bacillariophyta	Bacillariophyceae	Naviculales	Pinnulariaceae	Pinnularia	Pinnularia australomicrostauron
+Bacillariophyta	Coscinodiscophyceae	Thalassiosirales	Thalassiosiraceae	Thalassiosira	Thalassiosira punctigera
+Bacillariophyta	Coscinodiscophyceae	Chaetocerotales	Chaetocerotaceae	Chaetoceros	
+Bacillariophyta	Coscinodiscophyceae	Thalassiosirales	Stephanodiscaceae	Cyclotella	
+Bacillariophyta	Bacillariophyceae	Naviculales	Sellaphoraceae	Fallacia	
+Bacillariophyta	Bacillariophyceae	Bacillariales	Bacillariaceae	Nitzschia	
+Bacillariophyta	Bacillariophyceae	Bacillariales	Bacillariaceae	Nitzschia	
+Bacillariophyta	Bacillariophyceae	Naviculales	Pinnulariaceae	Pinnularia	
+Bacillariophyta	Bacillariophyceae	Naviculales	Pinnulariaceae	Pinnularia	
+Bacillariophyta	Bacillariophyceae	Naviculales	Pinnulariaceae	Pinnularia	
+Bacillariophyta	Bacillariophyceae	Naviculales	Sellaphoraceae	Sellaphora	
+Bacillariophyta	Bacillariophyceae	Naviculales	Sellaphoraceae	Sellaphora	
+Bacillariophyta	Bacillariophyceae				
+Bacillariophyta	Bacillariophyceae	Naviculales			
+Bacillariophyta	Bacillariophyceae	Naviculales			
+Bacillariophyta	Coscinodiscophyceae				
+Bacillariophyta					
+Bacillariophyta	Bacillariophyceae	Naviculales			
+Bacillariophyta	Bacillariophyceae				
+Bacillariophyta					
+Bacillariophyta	Bacillariophyceae	Naviculales			
+Bacillariophyta					
+Bacillariophyta					
+Bacillariophyta	Bacillariophyceae				
+Bacillariophyta	Bacillariophyceae				
+Bacillariophyta					
+Bacillariophyta	Bacillariophyceae	Naviculales			
+Bacillariophyta	Bacillariophyceae				
+Bacillariophyta					
+Bacillariophyta	Bacillariophyceae				
+Bacillariophyta	Bacillariophyceae	Naviculales			
+Bacillariophyta					
+Bacillariophyta					
+Bacillariophyta	Bacillariophyceae				
+Bacillariophyta	Bacillariophyceae	Naviculales			
+Bacillariophyta	Bacillariophyceae	Naviculales			
+Bacillariophyta	Bacillariophyceae	Bacillariales	Bacillariaceae		
+Bacillariophyta					
+Bryozoa	Gymnolaemata	Cheilostomatida	Beaniidae	Beania	Beania plurispinosa
+Bryozoa	Gymnolaemata	Cheilostomatida	Romancheinidae	Escharoides	Escharoides angela
+Bryozoa	Gymnolaemata	Ctenostomatida	Vesiculariidae	Amathia	
+Bryozoa	Gymnolaemata	Cheilostomatida	Calloporidae		
+Chlorophyta	Mamiellophyceae	Mamiellales	Mamiellaceae	Micromonas	Micromonas pusilla
+Chlorophyta	Mamiellophyceae	Mamiellales	Mamiellaceae	Micromonas	Micromonas pusilla
+Chlorophyta	Palmophyllophyceae	Prasinococcales	Prasinococcaceae	Prasinoderma	Prasinoderma coloniale
+Chlorophyta	Pycnococcaceae				
+Chordata	Ascidiacea	Phlebobranchia	Ascidiidae	Ascidia	Ascidia ahodori
+Chordata	Ascidiacea	Aplousobranchia	Polycitoridae	Eudistoma	Eudistoma viride
+Chordata	Ascidiacea	Aplousobranchia	Polycitoridae	Nephtheis	Nephtheis fascicularis
+Chordata	Ascidiacea	Aplousobranchia			
+Cnidaria	Anthozoa	Actiniaria	Boloceroididae	Boloceroides	Boloceroides mcmurrichi
+Cnidaria	Hydrozoa	Leptothecata	Campanulariidae	Campanularia	Campanularia hincksii
+Cnidaria	Hydrozoa	Leptothecata	Campanulariidae	Campanularia	Campanularia hincksii
+Cnidaria	Hydrozoa	Anthoathecata	Corynidae	Coryne	Coryne eximia
+Cnidaria	Hydrozoa	Anthoathecata	Cladonematidae	Staurocladia	Staurocladia vallentini
+Cnidaria	Anthozoa	Actiniaria			
+Cnidaria	Hydrozoa	Leptothecata	Campanulariidae		
+Cnidaria	Hydrozoa	Leptothecata	Clytiidae	Clytia	
+Cnidaria	Hydrozoa				
+Cnidaria	Hydrozoa	Leptothecata			
+Cnidaria	Hydrozoa	Leptothecata			
+Cnidaria	Hydrozoa				
+Cnidaria	Hydrozoa				
+Cnidaria	Hydrozoa				
+Cnidaria	Hydrozoa	Leptothecata			
+Cnidaria	Hydrozoa	Leptothecata			
+Cnidaria	Hydrozoa	Leptothecata			
+Cnidaria	Hydrozoa				
+Cnidaria	Hydrozoa	Leptothecata	Halopterididae	Antennella	
+Echinodermata	Ophiuroidea	Amphilepidida	Amphiuridae	Amphipholis	Amphipholis squamata
+Echinodermata	Holothuroidea	Aspidochirotida	Stichopodidae	Australostichopus	Australostichopus mollis
+Echinodermata	Echinoidea	Camarodonta	Echinometridae	Evechinus	Evechinus chloroticus
+Echinodermata	Ophiuroidea	Amphilepidida	Amphiuridae		
+Echinodermata					
+Echinodermata					
+Mollusca	Bivalvia	Mytiloida	Mytilidae	Modiolus	Modiolus areolatus
+Mollusca	Bivalvia	Venerida	Veneridae	Tawera	Tawera spissa
+Mollusca	Gastropoda	Nudibranchia	Dorididae	Aphelodoris	
+Mollusca	Gastropoda				
+Mollusca	Gastropoda				
+Myzozoa	Dinophyceae				
+Nematoda	Enoplea	Enoplida	Enchelidiidae	Eurystomina	
+Nemertea	Enopla	Monostilifera			
+Nemertea	Enopla	Monostilifera			
+Nemertea	Enopla	Monostilifera	Amphiporidae		
+Nemertea	Enopla	Monostilifera			
+Nemertea	Pilidiophora	Heteronemertea	Lineidae	Micrura	
+Nemertea	Pilidiophora	Heteronemertea			
+Nemertea					
+Nemertea					
+Ochrophyta	Phaeophyceae	Dictyotales	Dictyotaceae	Dictyota	Dictyota cyanoloma
+Ochrophyta	Phaeophyceae	Laminariales	Lessoniaceae	Ecklonia	Ecklonia radiata 
+Ochrophyta	Phaeophyceae	Ectocarpales	Acinetosporaceae	Feldmannia	Feldmannia mitchelliae
+Ochrophyta	Phaeophyceae	Ectocarpales	Chordariaceae	Microspongium	Microspongium tenuissimum
+Ochrophyta	Phaeophyceae	Ectocarpales	Chordariaceae	Spermatochnus	Spermatochnus paradoxus
+Ochrophyta	Phaeophyceae	Ectocarpales	Chordariaceae	Leathesia	
+Ochrophyta	Phaeophyceae	Ectocarpales	Acinetosporaceae		
+Ochrophyta	Phaeophyceae	Ectocarpales	Acinetosporaceae		
+Ochrophyta	Phaeophyceae	Ectocarpales	Chordariaceae	Hecatonema	
+Ochrophyta	Phaeophyceae	Ectocarpales	Chordariaceae	Hecatonema	
+Ochrophyta	Phaeophyceae	Ectocarpales	Chordariaceae		
+Ochrophyta	Phaeophyceae	Ectocarpales	Chordariaceae		
+Ochrophyta	Phaeophyceae	Ectocarpales	Chordariaceae	Hecatonema	
+Ochrophyta	Phaeophyceae	Dictyotales	Dictyotaceae	Padina	
+Ochrophyta	Phaeophyceae	Ectocarpales	Chordariaceae		
+Ochrophyta	Phaeophyceae	Dictyotales	Dictyotaceae	Padina	
+Ochrophyta	Phaeophyceae	Ectocarpales	Chordariaceae		
+Ochrophyta	Phaeophyceae	Fucales	Sargassaceae		
+Oomycota	Oomycetes	Saprolegniales	Saprolegniaceae	Aphanomyces	Aphanomyces laevis
+Oomycota	Oomycetes	Pythiales	Pythiaceae	Pythium	Pythium contiguanum
+Oomycota	Oomycetes	Pythiales	Pythiaceae	Pythium	Pythium deliense
+Oomycota					
+Oomycota					
+Oomycota					
+Oomycota					
+Platyhelminthes	Rhabditophora	Polycladida	Leptoplanidae	Stylochoplana	Stylochoplana maculata
+Porifera	Demospongiae	Poecilosclerida			
+Porifera	Demospongiae				
+Porifera	Demospongiae	Poecilosclerida			
+Porifera	Demospongiae	Poecilosclerida			
+Porifera	Demospongiae	Poecilosclerida			
+Porifera	Demospongiae	Dictyoceratida			
+Porifera	Demospongiae				
+Porifera	Demospongiae	Tethyida	Tethyidae	Tethya	
+Porifera	Demospongiae	Poecilosclerida	Tedaniidae	Tedania	
+Porifera	Demospongiae	Poecilosclerida			
+Porifera	Demospongiae				
+Porifera	Demospongiae	Dictyoceratida			
+Porifera	Demospongiae	Clionaida	Clionaidae	Cliona	
+Porifera	Demospongiae	Tetractinellida			
+Porifera	Demospongiae	Poecilosclerida			
+Porifera	Demospongiae				
+Porifera	Demospongiae	Poecilosclerida			
+Porifera	Demospongiae	Dendroceratida	Halisarcidae	Halisarca	
+Porifera	Demospongiae	Poecilosclerida			
+Porifera	Demospongiae	Poecilosclerida			
+Porifera	Demospongiae	Poecilosclerida			
+Porifera	Demospongiae	Poecilosclerida			
+Porifera	Demospongiae	Poecilosclerida			
+Porifera	Homoscleromorpha	Homosclerophorida	Oscarellidae		
+Rhodophyta	Florideophyceae	Ceramiales	Callithamniaceae	Aglaothamnion	Aglaothamnion callophyllidicola
+Rhodophyta	Florideophyceae	Ceramiales	Delesseriaceae	Apoglossum	Apoglossum ruscifolium
+Rhodophyta	Florideophyceae	Gigartinales	Kallymeniaceae	Callophyllis	Callophyllis laingiana
+Rhodophyta	Florideophyceae	Corallinales	Corallinaceae	Corallina	Corallina caespitosa
+Rhodophyta	Florideophyceae	Gelidiales	Gelidiaceae	Gelidium	Gelidium galapagense
+Rhodophyta	Florideophyceae	Ceramiales	Rhodomelaceae	Gredgaria	Gredgaria maugeana
+Rhodophyta	Florideophyceae	Corallinales	Corallinaceae	Jania	Jania verrucosa
+Rhodophyta	Florideophyceae	Rhodymeniales	Rhodymeniaceae	Rhodymenia	Rhodymenia leptophylla
+Rhodophyta	Florideophyceae	Ceramiales	Delesseriaceae	Schizoseris	Schizoseris dichotoma
+Rhodophyta	Florideophyceae	Ceramiales	Rhodomelaceae	Ululania	Ululania stellata
+Rhodophyta	Bangiophyceae	Bangiales	Bangiaceae	Porphyra	
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae	Gigartinales	Phyllophoraceae	Schottera	
+Rhodophyta	Florideophyceae	Ceramiales			
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae	Gigartinales	Kallymeniaceae	Callophyllis	
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae	Gigartinales	Peyssonneliaceae	Peyssonnelia	
+Rhodophyta	Florideophyceae	Gigartinales	Chondrymeniaceae		
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae	Ceramiales	Delesseriaceae		
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae	Gigartinales	Peyssonneliaceae		
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae	Ceramiales	Delesseriaceae		
+Rhodophyta	Florideophyceae	Ceramiales	Delesseriaceae		
+Rhodophyta	Florideophyceae	Ceramiales	Dasyaceae		
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae	Ceramiales			
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae	Hapalidiales	Mesophyllumaceae	Mesophyllum	
+Rhodophyta	Florideophyceae	Ceramiales	Rhodomelaceae		
+Rhodophyta	Florideophyceae	Corallinales	Lithophyllaceae	Lithophyllum	
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae	Acrochaetiales	Acrochaetiaceae	Acrochaetium	
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae	Acrochaetiales	Acrochaetiaceae	Acrochaetium	
+Rhodophyta	Florideophyceae	Ceramiales			
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae				
+Rhodophyta	Florideophyceae	Nemaliales	Scinaiaceae	Scinaia	

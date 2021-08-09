@@ -1,0 +1,182 @@
+Phylum,Class,Order,Family,Genus,Species,Species name
+Annelida,Polychaeta,Spionida,Spionidae,Boccardia,,
+Annelida,Polychaeta,Spionida,Chaetopteridae,Chaetopteris,,
+Annelida,Polychaeta,Spionida,Cirratulidae,,,
+Annelida,Polychaeta,Spionida,Acrocirridae,,,
+Annelida,Polychaeta,Capitellida,Capitellidae,,,
+Annelida,Polychaeta,Capitellida,Maldanidae,,,
+Annelida,Polychaeta,Opheliida,Scalibregmidae,Hyboscolex,,
+Annelida,Polychaeta,Phyllodocida,Phyllodocidae,,,
+Annelida,Polychaeta,Phyllodocida,Polynoidae,Lepidonotus,polychromus,Lepidonotus polychromus
+Annelida,Polychaeta,Phyllodocida,Sigalionidae,,,
+Annelida,Polychaeta,Phyllodocida,Chrysopetalidae,,,
+Annelida,Polychaeta,Phyllodocida,Syllidae,,,
+Annelida,Polychaeta,Phyllodocida,Nereidae,Nereis,falcaria,Nereis falcaria
+Annelida,Polychaeta,Phyllodocida,Nereidae,Platynereis,australis,Platynereis australis
+Annelida,Polychaeta,Phyllodocida,Nereidae,,,
+Annelida,Polychaeta,Phyllodocida,Glyceridae,,,
+Annelida,Polychaeta,Amphinomida,Euphrosinidae,,,
+Annelida,Polychaeta,Eunicida,Eunicidae,Eunice,australis,Eunice australis
+Annelida,Polychaeta,Eunicida,Eunicidae,Lysidice,ninetta,Lysidice ninetta
+Annelida,Polychaeta,Eunicida,Lumbrineridae,,,
+Annelida,Polychaeta,Eunicida,Dorvillidae,,,
+Annelida,Polychaeta,Flabelligerida,Flabelligeridae,Flabelligera,bicolor,Flabelligera bicolor
+Annelida,Polychaeta,Flabelligerida,Flabelligeridae,Pherusa,parmata,Pherusa parmata
+Annelida,Polychaeta,Flabelligerida,Flabelligeridae,,,
+Annelida,Polychaeta,Terebellida,Terebellidae,,,
+Annelida,Polychaeta,Terebellida,Sabellariidae,,,
+Annelida,Polychaeta,Terebellida,Ampharetidae,,,
+Annelida,Polychaeta,Terebellida,Trichobranchidae,Terebellides,,
+Annelida,Polychaeta,Sabellida,Sabellidae,Branchiomma,,
+Annelida,Polychaeta,Sabellida,Sabellidae,,,
+Annelida,Polychaeta,Sabellida,Serpulidae,,,
+Annelida,Polychaeta,Sabellida,Spirorbinae,,,
+Arthropoda,Ostracoda,,,,,
+Arthropoda,Hexanauplia,Harpacticoida,,,,
+Arthropoda,Hexanauplia,Sessilia,Balanidae,Balanus,amphitrite,Balanus amphitrite
+Arthropoda,Malacostraca,Cumacea,,,,
+Arthropoda,Malacostraca,Tanaidacea,,,,
+Arthropoda,Malacostraca,Isopoda,Gnathiidea,,,
+Arthropoda,Malacostraca,Isopoda,Arcturidae,Astacilla,falclandia,Astacilla falclandia
+Arthropoda,Malacostraca,Isopoda,Arcturidae,Astacilla,sp,
+Arthropoda,Malacostraca,Isopoda,Jaeropsidae,Jaeropsis,sp. 1,
+Arthropoda,Malacostraca,Isopoda,Jaeropsidae,Jaeropsis,sp. 2,
+Arthropoda,Malacostraca,Isopoda,Janiridae,,,
+Arthropoda,Malacostraca,Isopoda,Janiridae,,,
+Arthropoda,Malacostraca,Isopoda,Janiridae,,,
+Arthropoda,Malacostraca,Isopoda,Janiridae,,,
+Arthropoda,Malacostraca,Isopoda,Limnoriidae,,,
+Arthropoda,Malacostraca,Isopoda,Munnidae,,,
+Arthropoda,Malacostraca,Isopoda,Plakarthriidae,Plakarthrium,typicum,Plakarthrium typicum
+Arthropoda,Malacostraca,Amphipoda,Amphilochidae,Amphilochidae,,
+Arthropoda,Malacostraca,Amphipoda,Ceinidae,Taihape,karori,Taihape karori
+Arthropoda,Malacostraca,Amphipoda,Colomastigidae,Colomastix,,
+Arthropoda,Malacostraca,Amphipoda,Corophiida,,,
+Arthropoda,Malacostraca,Amphipoda,Dexaminidae,Paradexamine,pacifica,Paradexamine pacifica
+Arthropoda,Malacostraca,Amphipoda,Dexaminidae,Polycheria,obtusa,Polycheria obtusa
+Arthropoda,Malacostraca,Amphipoda,Dexaminidae,,,
+Arthropoda,Malacostraca,Amphipoda,Gammaridae,Melita,awa,Melita awa
+Arthropoda,Malacostraca,Amphipoda,Iphimediidae,Iphimedia,haurakiensis,Iphimedia haurakiensis
+Arthropoda,Malacostraca,Amphipoda,Isaeidae,Photis,,
+Arthropoda,Malacostraca,Amphipoda,Leucothoidae,Leucothoe,trailli,Leucothoe trailli
+Arthropoda,Malacostraca,Amphipoda,Liljeborgiidae,Liljeborgia,akaroica,Liljeborgia akaroica
+Arthropoda,Malacostraca,Amphipoda,Lysianassidae,Amaryllis,macrophthalmus,Amaryllis macrophthalmus
+Arthropoda,Malacostraca,Amphipoda,Lysianassidae,Orchomene,,
+Arthropoda,Malacostraca,Amphipoda,Lysianassidae,Parawaldeckia,suzae,Parawaldeckia suzae
+Arthropoda,Malacostraca,Amphipoda,Lysianassidae,Stomacontion,hurleyi,Stomacontion hurleyi
+Arthropoda,Malacostraca,Amphipoda,Sebidae,Seba,typica,Seba typica
+Arthropoda,Malacostraca,Amphipoda,Caprellidae,Caprella,equilibra,Caprella equilibra
+Arthropoda,Malacostraca,Decapoda,Alpheidae,Alpheus,socialis,Alpheus socialis
+Arthropoda,Malacostraca,Decapoda,Paguridae,Pagurus,indet.,,
+Arthropoda,Malacostraca,Decapoda,Porcellanidae,Petrocheles,spinosus,Petrocheles spinosus
+Arthropoda,Malacostraca,Decapoda,Xanthidae,Pilumnus,novaezelandiae,Pilumnus novaezelandiae
+Brachiopoda,Articulata,Terebratulida,Terebratellidae,Terebratella,inconspicua,Terebratella inconspicua
+Bryozoa,Stenolaemata,Cyclostomata,Hastingsiidae,Hastingsia,,
+Bryozoa,Stenolaemata,Cyclostomata,Lichenoporidae,,,
+Bryozoa,Stenolaemata,Cyclostomata,Mecynoeciidae,Mecynoecia,purpurascens,Mecynoecia purpurascens
+Bryozoa,Stenolaemata,Cyclostomata,Tubuliporidae,Platonea,cf. expansa,Platonea expansa
+Bryozoa,Stenolaemata,Cyclostomata,Tubuliporidae,Tubulipora,connata,Tubulipora connata
+Bryozoa,Stenolaemata,Cyclostomata,Tubuliporidae,Tubulipora,sp,
+Bryozoa,Stenolaemata,Cyclostomata,Theonoidae,Telopora,sp. 1,
+Bryozoa,Stenolaemata,Cyclostomata,Theonoidae,Telopora,sp. 2,
+Bryozoa,Gymnolaemata,Cheilostomata,Flustridae,Gregarinidra,serrata,Gregarinidra serrata
+Bryozoa,Gymnolaemata,Cheilostomata,Chaperiidae,Chaperiopsis,cervicornis,Chaperiopsis cervicornis
+Bryozoa,Gymnolaemata,Cheilostomata,Calloporidae,Foveolaria,cyclops,Foveolaria cyclops
+Bryozoa,Gymnolaemata,Cheilostomata,Calloporidae,Retevirgula,acuta,Retevirgula acuta
+Bryozoa,Gymnolaemata,Cheilostomata,Calloporidae,Retevirgula,cf. aggregata,Retevirgula aggregata
+Bryozoa,Gymnolaemata,Cheilostomata,Beaniidae,Beania,discodermiae,Beania discodermiae
+Bryozoa,Gymnolaemata,Cheilostomata,Beaniidae,Beania,magellanica,Beania magellanica
+Bryozoa,Gymnolaemata,Cheilostomata,Beaniidae,Beania,plurispinosa,Beania plurispinosa
+Bryozoa,Gymnolaemata,Cheilostomata,Cabereidae,Caberea,,
+Bryozoa,Gymnolaemata,Cheilostomata,Arachnopusiidae,Arachnopusia,unicornis,Arachnopusia unicornis
+Bryozoa,Gymnolaemata,Cheilostomata,Exochellidae,Escharoides,excavata,Escharoides excavata
+Bryozoa,Gymnolaemata,Cheilostomata,Exochellidae,Exochella,armata,Exochella armata
+Bryozoa,Gymnolaemata,Cheilostomata,Smittinidae,Schizosmittina,maplestonei,Schizosmittina maplestonei
+Bryozoa,Gymnolaemata,Cheilostomata,Smittinidae,Smittoidea,maunganuiensis,Smittoidea maunganuiensis
+Bryozoa,Gymnolaemata,Cheilostomata,Crepidacanthidae,Crepidacantha,crinispina,Crepidacantha crinispina
+Bryozoa,Gymnolaemata,Cheilostomata,Inversulidae,Inversiula,fertilis,Inversiula fertilis
+Bryozoa,Gymnolaemata,Cheilostomata,Microporellidae,Calloporina,angustipora,Calloporina angustipora
+Bryozoa,Gymnolaemata,Cheilostomata,Microporellidae,Fenestrulina,malusii pulchra,Fenestrulina malusii pulchra
+Bryozoa,Gymnolaemata,Cheilostomata,Microporellidae,Microporella,,
+Bryozoa,Gymnolaemata,Cheilostomata,Hippothoidae,Celleporella,delta,Celleporella delta
+Bryozoa,Gymnolaemata,Cheilostomata,Hippothoidae,Celleporella,sp,
+Bryozoa,Gymnolaemata,Cheilostomata,Hippothoidae,Celleporella,tongima,Celleporella tongima
+Bryozoa,Gymnolaemata,Cheilostomata,Hippoporidridae,Odontoporella,adpressa,Odontoporella adpressa
+Bryozoa,Gymnolaemata,Cheilostomata,Chorizoporidae,Chorizopora,ferocissima,Chorizopora ferocissima
+Bryozoa,Gymnolaemata,Cheilostomata,Celleporidae,Celleporina,sinuata,Celleporina sinuata
+Bryozoa,Gymnolaemata,Cheilostomata,Celleporidae,Galeopsis,porcellanicus,Galeopsis porcellanicus
+Chordata,Ascidiacea,Pleurogona,Styelidae,Cnemidocarpa,bicornuta,Cnemidocarpa bicornuta
+Chordata,Ascidiacea,Enterogona,Synoicidea,Sigillinaria,arenosa,Sigillinaria arenosa
+Chordata,Ascidiacea,,,,,
+Chordata,Ascidiacea,Enterogona,Didemnidae,Didemnum,,
+Cnidaria,Hydrozoa,Conica ,Sertulariidae,Sertularella,simplex,Sertularella simplex
+Cnidaria,Hydrozoa,Conica ,Plumulariidae,Plumularia,setacea,Plumularia setacea
+Cnidaria,Hydrozoa,Proboscoida ,Campanulariidae,Orthopyxis,,
+Cnidaria,Anthozoa,Actiniaria,Actiniidae,Actinaria,,
+Echinodermata,Holothuroidea,Dendrochirota,Cucumariidae,Ocnus,,
+Echinodermata,Echinoidea,Echinoida,Echinometridae,Evechinus,chloroticus,Evechinus chloroticus
+Echinodermata,Stelleroidea ,Spinulosida,Asterinidae,Patiriella,regularis,Patiriella regularis
+Echinodermata,Stelleroidea ,Ophiurida,Amphiuridae,Ophiactis,resiliens,Ophiactis resiliens
+Echinodermata,Stelleroidea ,Ophiurida,Ophiocomidae,Ophiopteris,antipodum,Ophiopteris antipodum
+Echinodermata,Stelleroidea ,Ophiurida,Ophiodermatidae,Pectinura,maculata,Pectinura maculata
+Echinodermata,Stelleroidea ,Ophiurida,Ophiotrichidae,Ophiothrix,aristulata,Ophiothrix aristulata
+Mollusca,Polyplacophora,Ischnochitonina,Chitonidae,Onithochiton,neglectus,Onithochiton neglectus
+Mollusca,Polyplacophora,Acathochitonina ,Acanthochitonidae,Notoplax,violacea,Notoplax violacea
+Mollusca,Gastropoda,Vetigastropoda,Scissurellidae,Incisura,rosea,Incisura rosea
+Mollusca,Gastropoda,Vetigastropoda,Scissurellidae,Scissurella,prendrevillei,Scissurella prendrevillei
+Mollusca,Gastropoda,Vetigastropoda,Fissurellidae,Emarginula,striatula,Emarginula striatula
+Mollusca,Gastropoda,Vetigastropoda,Fissurellidae,Tugali,suteri,Tugali suteri
+Mollusca,Gastropoda,Vetigastropoda,Trochidae,Trochus,viridus,Trochus viridus
+Mollusca,Gastropoda,Vetigastropoda,Turbinidae,Cookia,sulcata,Cookia sulcata
+Mollusca,Gastropoda,Neotaenioglossa,Eatoniellidae,Eatoniella,albocolumella,Eatoniella albocolumella
+Mollusca,Gastropoda,Neotaenioglossa,Eatoniellidae,Eatoniella,roseola,Eatoniella roseola
+Mollusca,Gastropoda,Neotaenioglossa,Eatoniellidae,Eatoniella,roseocincta,Eatoniella roseocincta
+Mollusca,Gastropoda,Neotaenioglossa,Cingulopsidae,Eatonina,atomaria,Eatonina atomaria
+Mollusca,Gastropoda,Neotaenioglossa,Cingulopsidae,Eatonina,micans,Eatonina micans
+Mollusca,Gastropoda,Neotaenioglossa,Anabathridae,Pisinna,olivacea impressa,Pisinna olivacea impressa
+Mollusca,Gastropoda,Neotaenioglossa,Anabathridae,Pisinna,semiplicata,Pisinna semiplicata
+Mollusca,Gastropoda,Neotaenioglossa,Barleeidae,Fictonoba,rufolactea,Fictonoba rufolactea
+Mollusca,Gastropoda,Neotaenioglossa,Rissoidae,Merelina,taupoensis,Merelina taupoensis
+Mollusca,Gastropoda,Neotaenioglossa,Rissoidae,Onoba,fumata,Onoba fumata
+Mollusca,Gastropoda,Neotaenioglossa,Rissoidae,Pusillina,infecta,Pusillina infecta
+Mollusca,Gastropoda,Neotaenioglossa,Rissoidae,Pusillina,latiambita,Pusillina latiambita
+Mollusca,Gastropoda,Neotaenioglossa,Velutinidae,Lamellaria,ophione,Lamellaria ophione
+Mollusca,Gastropoda,Neotaenioglossa,Cerithiopsidae,Cerithiella,stiria,Cerithiella stiria
+Mollusca,Gastropoda,Neotaenioglossa,Cerithiopsidae,Synthopsis,caelata,Synthopsis caelata
+Mollusca,Gastropoda,Neotaenioglossa,Cerithiopsidae,Zaclys,murdochi,Zaclys murdochi
+Mollusca,Gastropoda,Neotaenioglossa,Cerithiopsidae,Seila,cincta,Seila cincta
+Mollusca,Gastropoda,Neotaenioglossa,Triphoridae,Sagenotriphora,ampulla,Sagenotriphora ampulla
+Mollusca,Gastropoda,Neotaenioglossa,Epitoniidae,Epitonium,minora,Epitonium minora
+Mollusca,Gastropoda,Neotaenioglossa,Aclididae,Awanuia,porcelana,Awanuia porcelana
+Mollusca,Gastropoda,Neogastropoda,Muricidae,Muricopsis,octagonus,Muricopsis octagonus
+Mollusca,Gastropoda,Neogastropoda,Muricidae,Xymene,pusillus,Xymene pusillus
+Mollusca,Gastropoda,Neogastropoda,Buccinidae,Taron,albocostus,Taron albocostus
+Mollusca,Gastropoda,Neogastropoda,Columbellidae,Macrozafra,mariae,Macrozafra mariae
+Mollusca,Gastropoda,Neogastropoda,Columbellidae,Macrozafra,subabnormis,Macrozafra subabnormis
+Mollusca,Gastropoda,Neogastropoda,Costellariidae,Austromitra,rubiginosa,Austromitra rubiginosa
+Mollusca,Gastropoda,Heterostropha,Orbitestellidae,Orbitestella,toreuma,Orbitestella toreuma
+Mollusca,Gastropoda,Heterostropha,Pyramidellidae,Linopyrga,rugata,Linopyrga rugata
+Mollusca,Bivalvia,Arcoida,Arcidae,Barbatia,novaezealandiae,Barbatia novaezealandiae
+Mollusca,Bivalvia,Mytiloida,Mytilidae,Trichomusculus,barbatus,Trichomusculus barbatus
+Mollusca,Bivalvia,Pterioida,Pectinidae,Chlamys,zelandiae,Chlamys zelandiae
+Mollusca,Bivalvia,Veneroida,Lasaeidae,Borniola,reniformis,Borniola reniformis
+Mollusca,Bivalvia,Veneroida,Carditidae,Cardita,aoteana,Cardita aoteana
+Mollusca,Bivalvia,Veneroida,Carditidae,Cardita,brookesi,Cardita brookesi
+Mollusca,Bivalvia,Myoida,Hiatellidae,Hiatella,arctica,Hiatella arctica
+Nematoda,,,,,,
+Nemertea,,,,,,
+Platyhelminthes,Turbellaria,,,,,
+Platyhelminthes,Turbellaria,Polycladida,Pseudocerotidae,Thysanozoon,brocchii,Thysanozoon brocchii
+Porifera,Calcarea,Leucosolenida,Sycettidae,Sycon,sp. 2,
+Porifera,Calcarea,Leucosolenida,Sycettidae,Sycon,sp. 1,
+Porifera,Calcarea,Leucosolenida,Sycettidae,Sycon,sp. 3,
+Porifera,Calcarea,Leucosolenida,Grantiidae,Leucandra,sp. 1,
+Porifera,Calcarea,Clathrinida,Clathrinidae,,,
+Porifera,Demospongiae,Haplosclerida,Callyspongiidae,Callyspongia,,
+Porifera,Demospongiae,Dictyoceratida,Dysideidae,Dysidea,,
+Porifera,Demospongiae,Poecilosclerida,Phoriospongiidae,,,
+Porifera,Demospongiae,Poecilosclerida,Crellidae,Crella,incrustans,Crella incrustans
+Porifera,Demospongiae,,,,,
+Rhizopoda,Reticularea,Foraminiferida,Acervulinidae,Acervulina,inhaerens,Acervulina inhaerens
+Rhizopoda,Reticularea,Foraminiferida,Discorbidae,Trochulina,dimidiata,Trochulina dimidiata
+Sipuncula,,,,,,
