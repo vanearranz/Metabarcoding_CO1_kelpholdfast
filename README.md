@@ -213,16 +213,17 @@ We import the ASV table in R as [phyloseq](https://joey711.github.io/phyloseq/) 
 ```
 library("phyloseq")
 library("readr")
-library("decontam")
+library("dplyr")
+library("Biostrings")
 
 # ASV table without filtering 
 
-ASV_table <- read.csv("~/Desktop/Edesign manuscript/eDNA revisions/ASV_table1.csv", row.names = 1)
-ASV_table <- otu_table(as.matrix(ASV_table1), taxa_are_rows = TRUE)
+ASV_table <- read.csv("Resources/ASV_table1.csv", row.names = 1, check.names = FALSE)
+ASV_table <- otu_table(as.matrix(ASV_table), taxa_are_rows = TRUE)
 
 ## Add the taxonomy assigned 
 
-tax_table_new_edited_8ranks <- read.delim("tax_table_new_edited_8ranks.txt")
+tax_table_new_edited_8ranks <- read.delim("Resources/tax_table_new_edited_8ranks.txt")
 str(tax_table_new_edited_8ranks)
 
 matrix.please<-function(x) {
@@ -234,12 +235,11 @@ newtaxonomy <-matrix.please(tax_table_new_edited_8ranks)
 tax_table_newtaxonomy_8ranks <- tax_table(newtaxonomy)
 
 # Add the reference sequences
-reference_seqs0 <- readDNAStringSet(file = "rep-sequences-nofilt.fasta",format = "fasta", nrec = -1L, skip = 0L, seek.first.rec = FALSE, use.names = TRUE)
+reference_seqs0 <- readDNAStringSet(file = "Resources/rep-sequences-nofilt.fasta",format = "fasta", nrec = -1L, skip = 0L, seek.first.rec = FALSE, use.names = TRUE)
 
 # Add the sample data file 
-sample_data_96samples <- read.csv("sample_data_5X96samples.csv")
+sample_data_96samples <- read.csv("Resources/sample_data_5X96samples.csv")
 sampledata = sample_data(data.frame(sample_data_96samples, row.names = sample_names(ASV_table)))
-str(sampledata)
 
 # Create the phyloseq object 
 ASV <- phyloseq(otu_table(ASV_table), sample_data(sampledata), refseq(reference_seqs0), tax_table(tax_table_newtaxonomy_8ranks))
@@ -279,14 +279,14 @@ Tag switching correction. We used the R Script included in Resources/owi_renorma
 **Citation:**  Wangensteen OS, Turon X (2016) Metabarcoding techniques for assessing biodiversity of marine animal forests. Marine Animal Forests. The Ecology of Benthic Biodiversity Hotspots, eds Rossi S, Bramanti L, Gori A, Orejas C (Springer International Publishing).
 
 ```
-RScript owi_renormalize.R -i ASVtable_nf_nosc_noc_nocon.tsv -o ASVtable_tsc.tsv -c 0.97 -s 2 -e 88
+RScript Resources/owi_renormalize.R -i ASVtable_nf_nosc_noc_nocon.tsv -o ASVtable_tsc.tsv -c 0.97 -s 2 -e 88
 ```
 
 Rename samples names from . to - in the output table ASVtable_tsc.tsv. In R : 
 
 ```
 #After tag switching normalization
-ASVtable_tsc_all <- read.delim("ASVtable_tsc.tsv",sep = "\t", header=TRUE,as.is=TRUE, row.names = 1, check.names = FALSE)
+ASVtable_tsc_all <- read.delim("Resources/ASVtable_tsc.tsv",sep = "\t", header=TRUE,as.is=TRUE, row.names = 1, check.names = FALSE)
 str(ASVtable_tsc_all)
 # delete the last 3 columns of total counts 
 ASVtable_tsc_all <- ASVtable_tsc_all[-c(88:90)]
@@ -308,7 +308,7 @@ We used Vsearch to cluster the ASVs into Operational Taxonomic Units (OTUs). We 
 **Citation:**  Rognes T, Flouri T, Nichols B, Quince C, Mahé F. (2016) VSEARCH: a versatile open source tool for metagenomics. PeerJ 4:e2584. https://doi.org/10.7717/peerj.2584
 
 ```
-vsearch --cluster_size rep-sequences-ASV.fasta  --id 0.97 --uc clustering-results.uc -msaout sequences-outs
+vsearch --cluster_size rep-sequences-nofilt.fasta  --id 0.97 --uc clustering-results.uc -msaout sequences-outs
 ```
 
 Save the clustering results.uc as .csv
@@ -320,7 +320,7 @@ Change the header names as ASV_ID to merge in R with the previously taxonomy ass
 By running the following script in R, we created the OTU table by combining the previous ASV table and Vsearch clustering results by ASV_ID column and then.  
  
 ``` {r}
-clustering.results <- read.csv("~/Desktop/Edesign manuscript/eDNA revisions/clustering-results.csv")
+clustering.results <- read.csv("Resources/clustering-results.csv")
 ASV_OTU_table <- merge(ASVtable_tsc_all_clean, clustering.results, by.x="ASV_ID", by.y="ASV_ID")
 write.csv(ASV_OTU_table, file = "ASV_OTU_table.csv")
 ```
@@ -331,7 +331,7 @@ Manually edited again the ASV_OTU_table.csv to create the ASV_OTU_tabletocollaps
 - Delete all the columns from vsearch : taxonomy and ASV_ID
 
 ```
-OTU_nofilter_tocollapse <-  read.csv("~/Desktop/Edesign manuscript/eDNA revisions/ASV_OTU_tabletocollapse.csv", check.names = FALSE)
+OTU_nofilter_tocollapse <-  read.csv("Resources/ASV_OTU_tabletocollapse.csv", check.names = FALSE)
 OTU_nofilter_tocollapse$OUT97_ID <- as.factor(OTU_nofilter_tocollapse$OUT97_ID)
 #Collapse the OTUs with the same name (all ASVs that were collapse into OTUs)
 OTU_nofilter_collapsed <- OTU_nofilter_tocollapse %>% group_by(OUT97_ID) %>% summarise_all(funs(sum))
@@ -376,7 +376,7 @@ OTUtable_tsc
 ####### b. Produce a match list from the fasta file with the sequences
 
 # Extract the ref_seqs from the phyloseq object
-write.csv(refseq(ASV_nf.noSC.nocon.nc), ref_seqs.csv)
+write.csv(refseq(ASV_nf.noSC.nocon.nc), ref_seqs-ASV.csv)
 write.csv(refseq(OTU_nofilter), ref_seqs-OTU.csv)
 
 # Convert csv to fasta in a website - rep_sequences-ASV.fasta
@@ -389,15 +389,15 @@ makeblastdb -in rep-sequences-ASV.fasta -parse_seqids -dbtype nucl
 ```
 Then blast the ASVs against the database
 ```
-blastn -db rep-sequences-ASV.fasta -outfmt '6 qseqid sseqid pident' -out match_list2.txt -qcov_hsp_perc 80 -perc_identity 84 -query rep-sequences-ASV.fasta
+blastn -db rep-sequences-ASV.fasta -outfmt '6 qseqid sseqid pident' -out match_list-ASV.txt -qcov_hsp_perc 80 -perc_identity 84 -query rep-sequences-ASV.fasta
 ```
 
 Back in R 
 
 ```
-matchlistASV <- read.table("match_list-ASV.txt", header=FALSE,as.is=TRUE, stringsAsFactors=FALSE)
+matchlistASV <- read.table("Resources/match_list-ASV.txt", header=FALSE,as.is=TRUE, stringsAsFactors=FALSE)
 
-matchlistOTU <- read.table("match_list-OTU.txt", header=FALSE,as.is=TRUE, stringsAsFactors=FALSE)
+matchlistOTU <- read.table("Resources/match_list-OTU.txt", header=FALSE,as.is=TRUE, stringsAsFactors=FALSE)
 
 ### Run LULU to obtained the ASV/OTU table
 lulu_curated_result_ASV_tsc <-lulu(ASVtable_tsc, matchlistASV)
@@ -458,18 +458,17 @@ We created 5 different ASV tables and 5 OTU tables by applying different strateg
 4. 0.01% Minimum read abundance : AVf2/OTUf2 
 5. 0.05% Minimum read abundance : ASVf3/OTUf3
 
-The Phyloseq objects of these tables and metadata are included in Resources/[Edesign.Rdata](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/Edesign.Rdata) file ready to perform next analytical steps.  
+The Phyloseq objects of these tables and additional files are included in Resources/[Edesign.Rdata](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/Edesign.Rdata) file ready to perform the following analytical steps using the R Scripts provided.  
 
-- Edesign.cleaning : to merge samples to generate the bioinformatically merge samples. 
+We used linear models implemented in R v4.0.1 (R Core Team, 2020) to assess how our laboratory and bioinformatic decisions influenced biodiversity estimates for the holdfast communities.
 
-We used linear models implemented in R v3.6.1 (R Core Team, 2019) to assess how our laboratory and bioinformatic decisions influenced biodiversity estimates for the holdfast communities. 
-
-We created 4 different ASV tables by applying 3 abundance filtering thresholds and without filtering : ASVnf, ASV39, ASV130 and ASV652.
-Each of the ASV tables was converted into OTU by clustering at 97% similarity the ASVs : OTUnf, OTU39, OTU130 and OTU652. 
-
-- Edesign.LM.pipeline : uses the contrast matrix we used for our tests and run the linear models with the rarefied presence/absence matrix to assess how our laboratory and bioinformatic decisions influenced biodiversity estimates for the holdfast communities. 
-
-We run the custom R script with the Phyloseq objects created in the previous steps and contained in [Edesign.Rdata](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/Edesign.Rdata) file. 
+[Edesign_function_results.R]( 
 
 The results of the linear models were included in Figure 2 and Supporting information Table S2 of the manuscript "Metabarcoding hyperdiverse marine communities in temperate kelp forests: an experimental approach to inform future studies." by Vanessa Arranz, Libby Liggins and J. David Aguirre. 
+
+[Figures_scripts_ASVF1.R] Figure 3 and 4 
+
+
+[MorphologyvsMetabarcoding.R]
+
 
