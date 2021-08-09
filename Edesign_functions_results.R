@@ -1,4 +1,4 @@
-###### NEW RESULTS 2/08/21 ######
+###### RESULTS ######
 library(phyloseq)
 library(decontam)
 library(lme4)
@@ -44,7 +44,9 @@ Edesign.merging <- function(phyloseq.obj.raw, sample.data){
   
 }
 
-############# FUNCTION TO MERGE SAMPLES AND CREATE THE BIOINFORMATICALLY COMBINED SAMPLES ######### 
+############# FUNCTION FOR THE STATISTICAL ANALYSIS  ######### 
+# The function Edesign.LM.pipeline uses the contrast matrix we used for our tests and run the linear models 
+#with the rarefied presence/absence matrix to assess how our laboratory and bioinformatic decisions influenced biodiversity estimates for the holdfast communities.
 
 Edesign.LM.pipeline <- function(phyloseq.obj, contrast.mat, design, R.size){
     
@@ -124,8 +126,7 @@ Edesign.LM.pipeline <- function(phyloseq.obj, contrast.mat, design, R.size){
   out
 }
 
-#### Results NO Filtering ###### 
-
+                            
 # Add the Sample_data to merge the corresponding samples
 sample_data_tomerge <- read.csv(file = "Resources/sample_data_tomerge_edit.csv")
 
@@ -139,7 +140,10 @@ Design_long_format_edit$Smp <- as.factor(Design_long_format_edit$Smp)
 Design_long_format_edit$SFEP <- as.factor(Design_long_format_edit$SFEP)
 Design_long_format_edit
 
-#### NOW RUN ALL ANAYSIS AGAIN TO MAKE SURE IT'S IN ORDER #### 
+#### To generate the results for each dataset, run the following commands in order #### 
+# 1. Run the function Edesign.merging to generate the bioinformatically combined samples
+# 2. Run the function Edesign.LM.pipeline to use the contrast matrix, specifying the comparisons, and perform the linear models                              
+                             
 #### Results NO filtering ######
 
 ASV_nofilter
