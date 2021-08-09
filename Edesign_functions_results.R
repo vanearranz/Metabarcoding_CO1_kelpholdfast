@@ -5,6 +5,8 @@ library(lme4)
 library(lmerTest)
 library(vegan)
 
+load("~/Resources/Edesign.Rdata")
+
 ############# FUNCTION TO MERGE SAMPLES AND CREATE THE BIOINFORMATICALLY COMBINED SAMPLES ######### 
 
 Edesign.merging <- function(phyloseq.obj.raw, sample.data){
