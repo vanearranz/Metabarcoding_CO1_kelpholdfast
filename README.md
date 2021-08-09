@@ -460,15 +460,16 @@ We created 5 different ASV tables and 5 OTU tables by applying different strateg
 
 The Phyloseq objects of these tables and additional files are included in Resources/[Edesign.Rdata](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/Edesign.Rdata) file ready to perform the following analytical steps using the R Scripts provided.  
 
-We used linear models implemented in R v4.0.1 (R Core Team, 2020) to assess how our laboratory and bioinformatic decisions influenced biodiversity estimates for the holdfast communities.
+**[Results](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Edesign_functions_results.R) **
 
-[Edesign_function_results.R]( 
+We used linear models implemented in R v4.0.1 (R Core Team, 2020) to assess how our laboratory and bioinformatic decisions influenced biodiversity estimates for the holdfast communities.
 
 The results of the linear models were included in Figure 2 and Supporting information Table S2 of the manuscript "Metabarcoding hyperdiverse marine communities in temperate kelp forests: an experimental approach to inform future studies." by Vanessa Arranz, Libby Liggins and J. David Aguirre. 
 
-[Figures_scripts_ASVF1.R] Figure 3 and 4 
+**[Figures 3 and 4](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Figures3n4_scripts_ASVF1.R)** 
 
+To generate Figure 3 and 4, the previous RScript should be run to obatin the data to generate the figures 
 
-[MorphologyvsMetabarcoding.R]
+**[Comparison with Morphological based surveys](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/MorphologyvsMetabarcoding.R)**
 
 
