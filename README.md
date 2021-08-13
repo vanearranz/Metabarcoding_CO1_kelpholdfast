@@ -464,12 +464,13 @@ The Phyloseq objects of these tables and additional files are included in Resour
 
 We used linear models implemented in R v4.0.1 (R Core Team, 2020) to assess how our laboratory and bioinformatic decisions influenced biodiversity estimates for the holdfast communities.
 
-The results of the linear models were included in Figure 2 and Supporting information Table S2 of the manuscript "Metabarcoding hyperdiverse marine communities in temperate kelp forests: an experimental approach to inform future studies." by Vanessa Arranz, Libby Liggins and J. David Aguirre. 
+The results outputs are included in Resources/[Edesign_results.Rdata]
 
-**[Figures 3 and 4](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Figures3n4_scripts_ASVF1.R)** 
+**[Figure 2 and Supporting Material A2](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Recording_resultsr2.R)** 
 
-To generate Figure 3 and 4, the previous RScript should be run to obatin the data to generate the figures 
+**[Figures 3 and 4](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Figures_scripts_ASVF1.R)** 
 
-**[Comparison with Morphological based surveys](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/MorphologyvsMetabarcoding.R)**
+**[Comparison with Morphological based surveys - Figure 5 and 6](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/MorphologyvsMetabarcoding.R)**
 
+All the results are included in the manuscript "Metabarcoding hyperdiverse marine communities in temperate kelp forests: an experimental approach to inform future studies." by Vanessa Arranz, Libby Liggins and J. David Aguirre. 
 
