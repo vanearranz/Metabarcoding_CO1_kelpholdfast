@@ -464,7 +464,7 @@ The Phyloseq objects of these tables and additional files are included in Resour
 
 We used linear models implemented in R v4.0.1 (R Core Team, 2020) to assess how our laboratory and bioinformatic decisions influenced biodiversity estimates for the holdfast communities.
 
-The results outputs are included in Resources/[Edesign_results.Rdata]
+The results outputs are included in Resources/[Edesign_results.Rdata](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/Edesign_results.Rdata)
 
 **[Figure 2 and Supporting Material A2](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Recording_resultsr2.R)** 
 
