@@ -10,6 +10,8 @@ library(emmeans)
 library(ggplot2)
 library(ggthemes)
 
+load("~/Resources/Edesign.Rdata")
+load("~/Resources/Edesign_results.Rdata")
 
 ### Figure 3 ####
 ## Considering ASV lulu CONSIDERING ALL READS 
