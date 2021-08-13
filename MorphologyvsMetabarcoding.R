@@ -11,6 +11,9 @@ require(phyloseq)
 require(grid)
 require(eulerr)
 
+load("~/Resources/Edesign.Rdata")
+load("~/Resources/Edesign_results.Rdata")
+
 ### Metabarcoding taxa list ####
 
 OTU_nf_ass.out
