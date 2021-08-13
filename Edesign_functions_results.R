@@ -247,8 +247,6 @@ OTU_f3_ass = subset_taxa(OTU_f3, Domain=="d__Eukaryota")
 OTU_f3_ass.out <- Edesign.merging(phyloseq.obj.raw = OTU_f3_ass, sample.data = sample_data_tomerge)
 OTU_f3.LM.ass.out <- Edesign.LM.pipeline(phyloseq.obj = OTU_f3_ass.out, contrast.mat = square_cm4, design = Design_long_format, R.size = 1500)
 
-save(ASV,ASVtable_tsc,OTUtable_tsc,tax_table_newtaxonomy_8ranks, reference_seqs0, sampledata, matchlistASV, matchlistOTU, ASV_nofilter, OTU_nofilter, ASV_lulu, OTU_lulu, ASV_f1, OTU_f1, ASV_f2, OTU_f2, ASV_f3, OTU_f3, sample_data_tomerge, square_cm4, Design_long_format, file = "Edesign_github.Rdata")
-
-save(ASV_nf.LM.allr.out, ASV_nf.LM.ass.out, OTU_nf.LM.allr.out, OTU_nf.LM.ass.out, ASV_lulu.LM.allr.out, ASV_lulu.LM.ass.out, OTU_lulu.LM.allr.out, OTU_lulu.LM.ass.out, ASV_f1.LM.allr.out, ASV_f1.LM.ass.out, OTU_f1.LM.allr.out, OTU_f1.LM.ass.out, ASV_f2.LM.allr.out, ASV_f2.LM.ass.out, OTU_f2.LM.allr.out, OTU_f2.LM.ass.out, ASV_f3.LM.allr.out, ASV_f3.LM.ass.out, OTU_f3.LM.allr.out, OTU_f3.LM.ass.out, file = "Edesign_results.Rdata" )
+#save(ASV_nf.LM.allr.out, ASV_nf.LM.ass.out, OTU_nf.LM.allr.out, OTU_nf.LM.ass.out, ASV_lulu.LM.allr.out, ASV_lulu.LM.ass.out, OTU_lulu.LM.allr.out, OTU_lulu.LM.ass.out, ASV_f1.LM.allr.out, ASV_f1.LM.ass.out, OTU_f1.LM.allr.out, OTU_f1.LM.ass.out, ASV_f2.LM.allr.out, ASV_f2.LM.ass.out, OTU_f2.LM.allr.out, OTU_f2.LM.ass.out, ASV_f3.LM.allr.out, ASV_f3.LM.ass.out, OTU_f3.LM.allr.out, OTU_f3.LM.ass.out, file = "Edesign_results.Rdata" )
 
 
