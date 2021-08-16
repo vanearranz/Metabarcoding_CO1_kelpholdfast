@@ -1,7 +1,7 @@
 # Metabarcoding_CO1_kelpholdfast
 This workflow is specific to analysing eukaryote diversity from cDNA metabarcoding of kelp holdfasts using CO1 region from raw reads to biostatiscal analysis included in the manuscript "Metabarcoding hyperdiverse marine communities in temperate kelp forests: an experimental approach to inform future studies." by Vanessa Arranz, Libby Liggins and J. David Aguirre. 
 
-CO1 region was amplified using mlCOIintF-XT (refs) and jgHCO2198 (refs) primers. The product was aproximately 313bp obtained by Ilumina paired-end sequencing. 
+CO1 region was amplified using mlCOIintF-XT (refs) and jgHCO2198 (refs) primers. The product was aproximately 313bp obtained by Ilumina MiSeq paired-end sequencing. 
 
 Sample preparation, DNA extraction and PCR amplification related to this work can be found here (add link).
 
@@ -10,8 +10,7 @@ The scripts are designed to be run using a Linux OS, and were developed on Ubunt
 ## Requirements : 
 
 - The contents of this repo
-- Raw sequence data : CHECK WHICH ONE IS THE EASIEST WAY TO DOWNLOAD IT READY TO USE FOR THIS PIPELINE. Now I have them in a local folder name processed_trimmed. 
-All FASTQ sequence files are available from the National Center for Biotechnology Information short-read archive database (Bioproject: PRJNA638997, Biosamples: SAMN15220525-SAMN15220620).
+- Raw sequence data : All FASTQ sequence files are available from the National Center for Biotechnology Information short-read archive database (Bioproject: PRJNA638997, Biosamples: SAMN15220525-SAMN15220620).
 - QIIME2 version 2019.4 https://docs.qiime2.org/2020.8/install/ 
 - Biom http://biom-format.org/
 - MARES reference sequences database : https://osf.io/4f8mk/ 
@@ -365,7 +364,7 @@ ASV/OTU table curation combining similarity and co-occurence patterns.
 library("magrittr")
 library("lulu")
 
-# I need : 
+# We need : 
 ######## a. ASV/OTU table 
 
 # ASV table
