@@ -461,15 +461,15 @@ The Phyloseq objects of these tables and additional files are included in Resour
 
 **[Results](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Edesign_functions_results.R)**
 
-We used linear models implemented in R v4.0.1 (R Core Team, 2020) to assess how our laboratory and bioinformatic decisions influenced biodiversity estimates for the holdfast communities.
+We used linear models implemented in R v4.0.1 (R Core Team, 2020) to assess how our laboratory and bioinformatic decisions influenced biodiversity estimates for the holdfast communities. By running the function Edesign_functions_results.R, the results outputs can be obtained. 
 
 The results outputs are included in Resources/[Edesign_results.Rdata](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/Edesign_results.Rdata)
 
-**[Figure 2 and Supporting Material A2](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Recording_resultsr2.R)** 
+**[Figure 2 and Supporting Material A2](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Recording_resultsr2.R)**  : Use Recording_resultsr2.R script
 
-**[Figures 3 and 4](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Figures_scripts_ASVF1.R)** 
+**[Figures 3 and 4](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Figures_scripts_ASVF1.R)** : Use Figures_scripts_ASVF1.R 
 
-**[Comparison with Morphological based surveys - Figure 5 and 6](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/MorphologyvsMetabarcoding.R)**
+**[Comparison with Morphological based surveys - Figure 5 and 6](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/MorphologyvsMetabarcoding.R)** : Use MorphologyvsMetabarcoding.R
 
 All the results are included in the manuscript "Metabarcoding hyperdiverse marine communities in temperate kelp forests: an experimental approach to inform future studies." by Vanessa Arranz, Libby Liggins and J. David Aguirre. 
 
