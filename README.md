@@ -1,15 +1,13 @@
 # Metabarcoding_CO1_kelpholdfast
-This workflow is specific to analysing eukaryote diversity from cDNA metabarcoding of kelp holdfasts using CO1 region from raw reads to biostatiscal analysis included in the manuscript "Metabarcoding hyperdiverse marine communities in temperate kelp forests: an experimental approach to inform future studies." by Vanessa Arranz, Libby Liggins and J. David Aguirre. 
+This workflow is specific to analysing eukaryote diversity from community DNA metabarcoding of kelp holdfasts using CO1 gene region from raw reads. It reproduces the cleaning and curation steps as well as the biostatiscal analysis included in the manuscript "Metabarcoding hyperdiverse marine communities in temperate kelp forests: an experimental approach to inform future studies." by Vanessa Arranz, Libby Liggins and J. David Aguirre.  
 
-CO1 region was amplified using mlCOIintF-XT (refs) and jgHCO2198 (refs) primers. The product was aproximately 313bp obtained by Ilumina MiSeq paired-end sequencing. 
-
-Sample preparation, DNA extraction and PCR amplification related to this work can be found here (add link).
+Sample preparation, DNA extraction and PCR amplification steps related to this work can be found here (add link).
 
 The scripts are designed to be run using a Linux OS, and were developed on Ubuntu 16.04. 
 
 ## Requirements : 
 
-- The contents of this repo
+- The contents of this repository
 - Raw sequence data : All FASTQ sequence files are available from the National Center for Biotechnology Information short-read archive database (Bioproject: PRJNA638997, Biosamples: SAMN15220525-SAMN15220620).
 - QIIME2 version 2019.4 https://docs.qiime2.org/2020.8/install/ 
 - Biom http://biom-format.org/
@@ -20,7 +18,7 @@ The scripts are designed to be run using a Linux OS, and were developed on Ubunt
 - R https://www.r-project.org/
 
 
-## Getiing started
+## Getting started
 
 ### Activate QIIME2 
 
@@ -68,7 +66,7 @@ qiime demux summarize \
 qiime tools view trimmed-seqs.qzv
 ```
 
-## Denoise, chimera removal and clustering in ASVs: DADA2
+## Denoise, chimera removal and clustering into ASVs: DADA2
 
 [DADA2](https://github.com/qiime2/q2-dada2) : Pair-end joining, dereplication, chimera filtering and clustering in ASVs 
 
@@ -76,9 +74,9 @@ qiime tools view trimmed-seqs.qzv
 
 We now merge the forward and reverse reads together to obtain the full denoised sequences. Merging is performed by aligning the denoised forward reads with the reverse-complement of the corresponding denoised reverse reads, and then constructing the merged “contig” sequences. By default, merged sequences are only output if the forward and reverse reads overlap by at least 12 bases, and are identical to each other in the overlap region (but these conditions can be changed via function arguments).
 
-We can now construct an amplicon sequence variant table (ASV) table, a higher-resolution version of the OTU table produced by traditional methods.
+We can now construct an Amplicon Sequence Variant(ASV) table.
 
-ASVs are inferred by a *de novo* process in which biological sequences are discriminated from errors on the basis of, in part, the expectation that biological sequences are more likely to be repeatedly observed than are error-containing sequences. As a result, ASV inference cannot be performed independently on each read—the smallest unit of data from which ASVs can be inferred is a sample. However, unlike *de novo* OTUs, ASVs are consistent labels because ASVs represent a biological reality that exists outside of the data being analyzed: the DNA sequence of the assayed organism. Thus, ASVs inferred independently from different studies or different samples can be validly compared.
+ASVs are inferred by a *de novo* process in which biological sequences are discriminated from errors on the basis of, in part, the expectation that biological sequences are more likely to be repeatedly observed than are error-containing sequences. As a result, ASV inference cannot be performed independently on each read—the smallest unit of data from which ASVs can be inferred is a sample. However, unlike *de novo* OTUs, ASVs are consistent labels because ASVs represent a biological unit that exists outside of the data being analyzed. Thus, ASVs inferred independently from different studies or different samples can be validly compared.
 
 ```
 qiime dada2 denoise-paired \
@@ -146,21 +144,21 @@ ASVs passing the quality control and filtering thresholds (rep-seq-ASV.fasta) we
 Download MARES_NOBAR from https://osf.io/4f8mk/
 *Note : You can also used you MARES_BAR.*
 
-Place MARES_NOBAR_BOLD_NCBI_sl_reformatted.fasta in the main folder or include the path after -db 
+Place MARES_NOBAR_BOLD_NCBI_sl_reformatted.fasta in the main folder or include the file path after -db 
 
 ### Build the database 
 
-We first create a blast database from MARES reference sequence database
+We first create a blast database from the MARES reference sequence database
 ```
 makeblastdb -in MARES_NOBAR_BOLD_NCBI_sl_reformatted.fasta -dbtype nucl -parse_seqids
 ```
 
-### Blast each sequence against MARES reference sequences database : Blastn 
+### Blast each sequence against the MARES reference sequences database : Blastn 
 
-Then, we performed a BLASTn against MARES reference database with an e-value of 1-60 for high-quality matches and max_target_seqs equal to 10. 
+Then, we performed a BLASTn against MARES reference database with an e-value of 1-60 for high-quality matches and with default max_target_seqs (500). 
 
 ```
-blastn -db MARES_NOBAR_BOLD_NCBI_sl_reformatted.fasta -query rep-seq-ASV.fasta -evalue 1e-60 -max_target_seqs 10 -outfmt 5 -out MARES_MEGAN.txt -num_threads 12
+blastn -db MARES_NOBAR_BOLD_NCBI_sl_reformatted.fasta -query rep-seq-ASV.fasta -evalue 1e-60 -outfmt 5 -out MARES_MEGAN.txt -num_threads 12
 
 ```
 
@@ -185,12 +183,13 @@ min support % 0 (off)
 min support 1 
 ```
 
-Select level of taxonomy to view, possibly use multiple different levels, e.g. species, genus, family
+Select level of taxonomy to view, e.g. species, genus, family
 File -> Export -> Text (csv) Format
 Choose: readName_to_taxonPathKPCOFGS
 
--	It has a percent value at the end of the line. This refers to the percentage of high scoring alignments for the given read that map to the last taxon on the path. It has nothing to do with the percentage used in the weighted LCA.
+-	The .csv file will have a percent value at the end of the line. This refers to the percentage of high scoring alignments for the given read that map to the last taxon on the path. It has nothing to do with the percentage used in the weighted LCA.
 -	It only reports taxa in the path that have an official KPCOFGS rank. Intermediate nodes that have no taxonomic rank, or one that does not belong to KPCOFGS, are suppressed
+KPCOFGS = Kingdom, Phyllum, Class, Order, Family, Genus, Species 
 -	Each node is prefixed by letter__ to indicate the rank, e.g. g__ for genus, s__ for species : we can edit this later to have only the name
 
 Save into the main folder as assigned_seqs-MARES-ex.txt 
@@ -198,16 +197,16 @@ Save into the main folder as assigned_seqs-MARES-ex.txt
 
 **To create the OTU_taxonomy file to use in downstream analysis (see Statistical analysis):**
 - Export it as ReadName_to_taxonPathKPCOFGS / ASSIGNED
-- Import it into excel and remove the columns with the percentage *No need in the last version of MEGAN 
+- Import it into excel and remove the columns with the percentage *No need in MEGAN6.21.10
 - The unknowns were giving problems. Edited the excel to get rid of them and replace them for the taxon known 
 - The ASVs not assigned have to be set as 'd_unassigned' because is not working otherwise
 - Generate the names with a semicolon ; separation
-- Create OTU_ID in the first column and the TaxonPAth in the other one
+- Create OTU_ID in the first column and the TaxonPath in the other one
 - Save as .csv or .txt -> **taxonomy_edited_8ranks.txt**
 
 ## Create ASV/OTU Phyloseq objects 
 
-We import the ASV table in R as [phyloseq](https://joey711.github.io/phyloseq/) object with the taxonomy associated, sample metadata and reference sequences for posterior statistical analysis. 
+We then import the ASV table in R as [phyloseq](https://joey711.github.io/phyloseq/) object with the taxonomy associated, sample metadata and reference sequences for statistical analysis. 
 
 ```
 library("phyloseq")
@@ -247,7 +246,7 @@ ASV <- phyloseq(otu_table(ASV_table), sample_data(sampledata), refseq(reference_
 
 ## Extract possible contaminants and tag switching normalisation 
 
-We used decontam package in R to identify and extract blank contaminants using the negative controls. 
+We used decontam package in R to identify and extract contaminants using the DNA concentration of the samples and the negative controls. 
 
 **Citation:**  Davis NM, Proctor D, Holmes SP, Relman DA, Callahan BJ (2017). “Simple statistical identification and removal of contaminant sequences in marker-gene and metagenomics data.” bioRxiv, 221499. https://doi.org/10.1101/221499 
 
@@ -273,7 +272,8 @@ ASV_nf.noSC.nocon.nc <- subset_samples(ASV_nf.noSC.nocon, Sample_or_Control=="Tr
 write.csv(otu_table(ASV_nf.noSC.nocon.nc),file = "ASVtable_nf_nosc_noc_nocon.csv")
 ```
 
-Tag switching correction. We used the R Script included in Resources/owi_renormalize.R ADD THE SCRIPT THERE!!!! (https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/owi_renormalise.R) It sort the samples by abundance of each ASV and eliminate the reads of the samples corresponding to a cumulative frequency of less than 3% for each particular ASV . 
+Tag switching correction. We used the R Script included in Resources/owi_renormalize.R(https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/owi_renormalise.R).
+It sort the samples by abundance of each ASV and eliminate the reads of the samples corresponding to a cumulative frequency of less than 3% for each particular ASV. 
 
 **Citation:**  Wangensteen OS, Turon X (2016) Metabarcoding techniques for assessing biodiversity of marine animal forests. Marine Animal Forests. The Ecology of Benthic Biodiversity Hotspots, eds Rossi S, Bramanti L, Gori A, Orejas C (Springer International Publishing).
 
@@ -312,11 +312,11 @@ vsearch --cluster_size rep-sequences-nofilt.fasta  --id 0.97 --uc clustering-res
 
 Save the clustering results.uc as .csv
 
-I edited manually deleting the consensus rows C (because they are the same as the S of the clusters) -> clustering-results.csv
+Manually deleting the Cluster records rows "C", because they are the same as the cluster centroids "S" -> clustering-results.csv
 
-Change the header names as ASV_ID to merge in R with the previously taxonomy assigned to ASVs.
+Change the header names to ASV_ID to merge in R with the previous taxonomy assigned to ASVs.
 
-By running the following script in R, we created the OTU table by combining the previous ASV table and Vsearch clustering results by ASV_ID column and then.  
+By running the following script in R, we created the OTU table by combining the previous ASV table and Vsearch clustering results using the ASV_ID as an indicator.  
  
 ``` {r}
 clustering.results <- read.csv("Resources/clustering-results.csv")
@@ -325,9 +325,9 @@ write.csv(ASV_OTU_table, file = "ASV_OTU_table.csv")
 ```
 
 Manually edited again the ASV_OTU_table.csv to create the ASV_OTU_tabletocollapse.csv
-- Sort by H and  S : copy all the ASV column of the S into the OTU column (they are the consensus of the clusters)
+- Sort by Record type column : copy all the ASV_ID column of the centroids "S" into the OTU column (they are the consensus of the clusters)
 - Sort by Cluster number
-- Delete all the columns from vsearch : taxonomy and ASV_ID
+- Delete all the columns from Vsearch output + taxonomy and ASV_ID columns 
 
 ```
 OTU_nofilter_tocollapse <-  read.csv("Resources/ASV_OTU_tabletocollapse.csv", check.names = FALSE)
@@ -350,7 +350,7 @@ OTU_nofilter <- phyloseq(otu_table(OTU_nofilter), sample_data(sampledata00), ref
 
 ## Refining the datasets for downstream analysis 
 
-At this stage we perform different strategies to remove sequencing errors and artifacts to explore the effects of a number of different filtering thresholds (site-occupancy vs. percentahe cut-off) in the biodiversity estimates. We also included a non-filtered table for our downstream analysis.
+At this stage we perform different strategies to remove sequencing errors and artifacts and explore the effects of a number of different filtering thresholds (site-occupancy vs. percentage cut-off) in the biodiversity estimates. 
 
 
 ### LULU 
@@ -381,7 +381,7 @@ write.csv(refseq(OTU_nofilter), ref_seqs-OTU.csv)
 # Convert csv to fasta in a website - rep_sequences-ASV.fasta
 ```
 
-In the TERMINAL with BLASTN. First produce a blastdatabase with the ASV/OTUs reference sequences (example here only with ASVs)
+In the TERMINAL with BLASTN: produce a blast database with the ASV/OTUs reference sequences (example here only with ASVs)
 
 ```
 makeblastdb -in rep-sequences-ASV.fasta -parse_seqids -dbtype nucl
@@ -408,10 +408,10 @@ ASV_lulu <- otu_table(ASVtable_lulu, taxa_are_rows = TRUE)
 ASV_lulu <- phyloseq(otu_table(ASV_lulu), sample_data(ASV_nofilter), refseq(ASV_nofilter), tax_table(ASV_nofilter))
 ```
 
-### Minimum read abundance filtering 
+### Minimum read abundance 
 
 One of the most broadly employed strategies to remove artefactual sequences is to discard sequences with copy numbers under a certain threshold. 
-We used 3 different minimum read abundance thresholds across all samples to remove low abundance features of less than 0.003%, 0.01% and 0.05% across all samples.  
+We used 3 different minimum read abundance thresholds across all samples to remove low abundance features of less than 0.003%, 0.01% and 0.05% of the total read abundance across all samples.  
 
 ```
 #### 0.003% minimum read abundance 
@@ -452,7 +452,7 @@ OTU_f3
 We created 5 different ASV tables and 5 OTU tables by applying different strategies to remove possible contaminants. 
 
 1. NO filtering : ASVnf/OTUnf
-2. LULU filtering ASVlulu/OTUlulu  
+2. LULU filtering : ASVlulu/OTUlulu  
 3. 0.003% Minimum read abundance : ASVf1/OTUf1
 4. 0.01% Minimum read abundance : AVf2/OTUf2 
 5. 0.05% Minimum read abundance : ASVf3/OTUf3
