@@ -1,5 +1,5 @@
 # Metabarcoding_CO1_kelpholdfast
-This workflow is specific to analysing eukaryote diversity from community DNA metabarcoding of kelp holdfasts using CO1 gene region from raw reads. It reproduces the cleaning and curation steps as well as the biostatiscal analysis included in the manuscript "Metabarcoding hyperdiverse marine communities in temperate kelp forests: an experimental approach to inform future studies." by Vanessa Arranz, Libby Liggins and J. David Aguirre.  
+This workflow is specific to analysing eukaryote diversity from community DNA metabarcoding of kelp holdfasts using CO1 gene region from raw reads. It reproduces the cleaning and curation steps as well as the biostatiscal analysis included in the manuscript "Metabarcoding hyperdiverse kelp holdfast communities on temperate reefs: an experimental approach to inform future studies." by Vanessa Arranz, Libby Liggins and J. David Aguirre.  
 
 Sample preparation, DNA extraction and PCR amplification steps related to this work can be found here (add link).
 
@@ -469,5 +469,5 @@ The results outputs are included in Resources/[Edesign_results.Rdata](https://gi
 
 **[Comparison with Morphological based surveys - Figure 5 and 6](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/4.MorphologyvsMetabarcoding.R)** : Use 4.MorphologyvsMetabarcoding.R
 
-All the results are included in the manuscript "Metabarcoding hyperdiverse marine communities in temperate kelp forests: an experimental approach to inform future studies." by Vanessa Arranz, Libby Liggins and J. David Aguirre. 
+All the results are included in the manuscript "Metabarcoding hyperdiverse kelp holdfast communities on temperate reefs: an experimental approach to inform future studies." by Vanessa Arranz, Libby Liggins and J. David Aguirre. 
 
