@@ -136,8 +136,6 @@ ASVs passing the quality control and filtering thresholds (rep-seq-ASV.fasta) we
 
 [MARES](https://www.nature.com/articles/s41597-020-0549-9) is the most comprehensive CO1 reference database for marine eukaryotes available, and provides users the ability to retain taxa that cannot be assigned at the species level, but can be assigned at higher taxonomic levels. 
 
-**Citation:** Arranz, V., Pearman, W.S., Aguirre, J.D. et al. MARES, a replicable pipeline and curated reference database for marine eukaryote metabarcoding. Sci Data 7, 209 (2020). https://doi.org/10.1038/s41597-020-0549-9
-
 
 **To use MARES reference database:**
 
@@ -459,17 +457,17 @@ We created 5 different ASV tables and 5 OTU tables by applying different strateg
 
 The Phyloseq objects of these tables and additional files are included in Resources/[Edesign_github.Rdata](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/Edesign.Rdata) file ready to perform the following analytical steps using the R Scripts provided.  
 
-**[Results](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/1.Edesign_functions_results.R)** : Use Edesign_functions_results.R Script
+**[Results](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/1.Edesign_functions_results.R)** : Use 1.Edesign_functions_results.R Script
 
 We used linear models implemented in R v4.0.1 (R Core Team, 2020) to assess how our laboratory and bioinformatic decisions influenced biodiversity estimates for the holdfast communities. 
 
 The results outputs are included in Resources/[Edesign_results.Rdata](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/Edesign_results.Rdata)
 
-**[Figure 2 and Supporting Material A2](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/2.Recording_results3.R)**  : Use Recording_resultsr2.R script
+**[Figure 2 and Supporting Material - Figure A2](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/2.Recording_results3.R)**  : Use 2.Recording_results3.R script
 
-**[Figures 3 and 4](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/3.Figures_scripts_ASVF1.R)** : Use Figures_scripts_ASVF1.R 
+**[Figures 3 and 4](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/3.Figures_scripts_ASVF1.R)** : Use 3.Figures_scripts_ASVF1.R)
 
-**[Comparison with Morphological based surveys - Figure 5 and 6](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/4.MorphologyvsMetabarcoding.R)** : Use MorphologyvsMetabarcoding.R
+**[Comparison with Morphological based surveys - Figure 5 and 6](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/4.MorphologyvsMetabarcoding.R)** : Use 4.MorphologyvsMetabarcoding.R
 
 All the results are included in the manuscript "Metabarcoding hyperdiverse marine communities in temperate kelp forests: an experimental approach to inform future studies." by Vanessa Arranz, Libby Liggins and J. David Aguirre. 
 
