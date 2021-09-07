@@ -195,7 +195,7 @@ Save into the main folder as assigned_seqs-MARES-ex.txt
 **To create the OTU_taxonomy file to use in downstream analysis (see Statistical analysis):**
 - Export it as ReadName_to_taxonPathKPCOFGS / ASSIGNED
 - Import it into excel and remove the columns with the percentage *No need in MEGAN6.21.10
-- The unknowns were giving problems. Edited the excel to get rid of them and replace them for the taxon known 
+- Because the unknowns create problems, the excel spreadsheet needs to be edited to replace them with the taxon known
 - The ASVs not assigned have to be set as 'd_unassigned' because is not working otherwise
 - Generate the names with a semicolon ; separation
 - Create OTU_ID in the first column and the TaxonPath in the other one
@@ -270,7 +270,7 @@ write.csv(otu_table(ASV_nf.noSC.nocon.nc),file = "ASVtable_nf_nosc_noc_nocon.csv
 ```
 
 Tag switching correction. We used the R Script included in Resources/owi_renormalize.R(https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/owi_renormalise.R).
-It sort the samples by abundance of each ASV and eliminate the reads of the samples corresponding to a cumulative frequency of less than 3% for each particular ASV. 
+This sorts the samples by abundance for each ASV and eliminates the reads of the samples corresponding to a cumulative frequency of less than 3% for each particular ASV. 
 
 **Citation:**  Wangensteen OS, Turon X (2016) Metabarcoding techniques for assessing biodiversity of marine animal forests. Marine Animal Forests. The Ecology of Benthic Biodiversity Hotspots, eds Rossi S, Bramanti L, Gori A, Orejas C (Springer International Publishing).
 
