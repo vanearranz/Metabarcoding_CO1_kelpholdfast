@@ -139,7 +139,7 @@ ASVs passing the quality control and filtering thresholds (rep-seq-ASV.fasta) we
 **To use MARES reference database:**
 
 Download MARES_NOBAR from https://osf.io/4f8mk/
-*Note : You can also use you MARES_BAR.*
+*Note : You can also use MARES_BAR.*
 
 Place MARES_NOBAR_BOLD_NCBI_sl_reformatted.fasta in the main folder or include the file path after -db 
 
@@ -186,7 +186,7 @@ Choose: readName_to_taxonPathKPCOFGS
 
 -	The .csv file will have a percent value at the end of the line. This refers to the percentage of high scoring alignments for the given read that map to the last taxon on the path. It has nothing to do with the percentage used in the weighted LCA.
 -	It only reports taxa in the path that have an official KPCOFGS rank. Intermediate nodes that have no taxonomic rank, or one that does not belong to KPCOFGS, are suppressed
-KPCOFGS = Kingdom, Phyllum, Class, Order, Family, Genus, Species 
+KPCOFGS = Kingdom, Phylum, Class, Order, Family, Genus, Species 
 -	Each node is prefixed by a letter__ to indicate the rank, e.g. g__ for genus, s__ for species : we can edit this later to have only the name
 
 Save into the main folder as assigned_seqs-MARES-ex.txt 
