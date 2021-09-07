@@ -136,11 +136,10 @@ ASVs passing the quality control and filtering thresholds (rep-seq-ASV.fasta) we
 
 [MARES](https://www.nature.com/articles/s41597-020-0549-9) is the most comprehensive CO1 reference database for marine eukaryotes available, and provides users the ability to retain taxa that cannot be assigned at the species level, but can be assigned at higher taxonomic levels. 
 
-
 **To use MARES reference database:**
 
 Download MARES_NOBAR from https://osf.io/4f8mk/
-*Note : You can also used you MARES_BAR.*
+*Note : You can also use you MARES_BAR.*
 
 Place MARES_NOBAR_BOLD_NCBI_sl_reformatted.fasta in the main folder or include the file path after -db 
 
