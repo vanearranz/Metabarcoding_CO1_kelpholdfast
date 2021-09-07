@@ -187,7 +187,7 @@ Choose: readName_to_taxonPathKPCOFGS
 -	The .csv file will have a percent value at the end of the line. This refers to the percentage of high scoring alignments for the given read that map to the last taxon on the path. It has nothing to do with the percentage used in the weighted LCA.
 -	It only reports taxa in the path that have an official KPCOFGS rank. Intermediate nodes that have no taxonomic rank, or one that does not belong to KPCOFGS, are suppressed
 KPCOFGS = Kingdom, Phyllum, Class, Order, Family, Genus, Species 
--	Each node is prefixed by letter__ to indicate the rank, e.g. g__ for genus, s__ for species : we can edit this later to have only the name
+-	Each node is prefixed by a letter__ to indicate the rank, e.g. g__ for genus, s__ for species : we can edit this later to have only the name
 
 Save into the main folder as assigned_seqs-MARES-ex.txt 
 
