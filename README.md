@@ -5,8 +5,6 @@ Sample preparation, DNA extraction and PCR amplification steps related to this w
 
 The scripts are designed to be run using a Linux OS, and were developed on Ubuntu 16.04. 
 
-#insert line 
-
 ## Requirements : 
 
 - The contents of this repository
