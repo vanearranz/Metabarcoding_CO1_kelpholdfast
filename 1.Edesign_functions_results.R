@@ -1,5 +1,5 @@
 ########################################################
-###### Script to perform the analysis of the manuscript "Metabarcoding hyperdiverse marine communities in temperate kelp forests: an experimental approach to inform future studies." TEST2-Dave
+###### Script to perform the analysis of the manuscript "Metabarcoding hyperdiverse marine communities in temperate kelp forests: an experimental approach to inform future studies."
 ########################################################
 
 library(phyloseq)
