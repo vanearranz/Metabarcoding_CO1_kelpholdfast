@@ -4,6 +4,7 @@ This workflow is specific to analysing eukaryote diversity from community DNA me
 Sample preparation, DNA extraction and PCR amplification steps related to this work can be found here (add link).
 
 The scripts are designed to be run using a Linux OS, and were developed on Ubuntu 16.04. 
+#insert line
 
 ## Requirements : 
 
@@ -34,7 +35,6 @@ qiime tools import \
   --input-path processed_trimmed/ \
   --input-format CasavaOneEightSingleLanePerSampleDirFmt \
   --output-path demux-paired-end.qza
-
 
 # paired-end-demux.qza is an artifact file '.qza' that has the information stored for your raw fastq sequences. We can summarize and visualize the output by transforming to '.qzv'. Check the output : https://view.qiime2.org/
 
