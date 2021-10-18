@@ -462,7 +462,7 @@ We used linear models implemented in R v4.0.1 (R Core Team, 2020) to assess how 
 
 The results outputs are included in Resources/[Edesign_results.Rdata](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/Resources/Edesign_results.Rdata)
 
-**[Figure 2 and Supporting Material - Figure A2](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/2.Recording_results3.R)**  : Use 2.Recording_results3.R script
+**[Figure 2 and Supporting Material - Figure A2](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/2.Recording_results.R)**  : Use 2.Recording_results3.R script
 
 **[Figures 3 and 4](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/3.Figures_scripts_ASVF1.R)** : Use 3.Figures_scripts_ASVF1.R)
 
