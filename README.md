@@ -464,7 +464,7 @@ The results outputs are included in Resources/[Edesign_results.Rdata](https://gi
 
 **[Figure 2 and Supporting Material - Figure A2](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/2.Recording_results.R)**  : Use 2.Recording_results3.R script
 
-**[Figures 3 and 4](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/3.Figures_scripts_ASVF1.R)** : Use 3.Figures_scripts_ASVF1.R)
+**[Figures 3 and 4](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/3.Figures_scripts_ASVF1.R)** : Use 3.Figures_scripts_ASVF1.R
 
 **[Comparison with Morphological based surveys - Figure 5 and 6](https://github.com/vanearranz/Metabarcoding_CO1_kelpholdfast/blob/main/4.MorphologyvsMetabarcoding.R)** : Use 4.MorphologyvsMetabarcoding.R
 
