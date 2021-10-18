@@ -17,15 +17,15 @@ for(j in 1:length(results.list)){
   tile.sum.tmp <- list()
     for(i in 1:length(tmp)){
   
-    lm.col <- ifelse(round(tmp[[i]]$LM_richness$coefficients[2:12,5],3) <0.001, "A", ifelse(round(tmp[[i]]$LM_richness$coefficients[2:12,5],3) <0.01, "B", ifelse(round(tmp[[i]]$LM_richness$coefficients[2:12,5],3) <0.05, "C", "D")))
+    lm.col <- ifelse(round(tmp[[i]]$LM_richness$coefficients[2:11,5],3) <0.001, "A", ifelse(round(tmp[[i]]$LM_richness$coefficients[2:11,5],3) <0.01, "B", ifelse(round(tmp[[i]]$LM_richness$coefficients[2:11,5],3) <0.05, "C", "D")))
     
-    adonis.col <- ifelse(tmp[[i]]$PERMANOVA_composition$`Pr(>F)`[1:11] <0.001, "A", ifelse(tmp[[i]]$PERMANOVA_composition$`Pr(>F)`[1:11] <0.01, "B", ifelse(tmp[[i]]$PERMANOVA_composition$`Pr(>F)`[1:11] <0.05, "C", "D")))
+    adonis.col <- ifelse(tmp[[i]]$PERMANOVA_composition$`Pr(>F)`[1:10] <0.001, "A", ifelse(tmp[[i]]$PERMANOVA_composition$`Pr(>F)`[1:10] <0.01, "B", ifelse(tmp[[i]]$PERMANOVA_composition$`Pr(>F)`[1:10] <0.05, "C", "D")))
   
     permdisp.p <- unlist(lapply(tmp[[i]]$PERMDISP_composition, function(x) x$`Pr(>F)`[1]))
   
     permdisp.col <- ifelse(permdisp.p <0.001, "A", ifelse(permdisp.p <0.01, "B", ifelse(permdisp.p <0.05, "C", "D")))
     
-    tile.df <- data.frame(R.seed = c("R0","R1","R2","R3")[i],  Model = factor(rep(c("Richness", "Composition", "Dispersions"), each = 11), levels = (c("Richness", "Composition", "Dispersions"))), contrast = factor(rep(names(permdisp.col),3), levels = (names(permdisp.col))), Sig. = c(lm.col, adonis.col, permdisp.col))  
+    tile.df <- data.frame(R.seed = c("R0","R1","R2","R3")[i],  Model = factor(rep(c("Richness", "Composition", "Dispersions"), each = 10), levels = (c("Richness", "Composition", "Dispersions"))), contrast = factor(rep(names(permdisp.col),3), levels = (names(permdisp.col))), Sig. = c(lm.col, adonis.col, permdisp.col))  
     tile.sum.tmp[[i]] <- tile.df
     }
   index <- unlist(strsplit(names(results.list)[j], "_"))
@@ -44,6 +44,6 @@ SM_A2 <- ggplot(tile.sum.all.p)+
   scale_x_discrete(position = "top") +
   theme(strip.text.y = element_text(angle = 0, size = 6), axis.text.y = element_blank(), axis.title.y = element_blank(), axis.text.y.left = element_blank(), axis.title.y.left = element_blank(), strip.text.x = element_text(face="bold", size=6), axis.title.x=element_blank(), axis.text.x=element_blank(), panel.spacing.y = unit(0.05, "lines")) 
 
-#pdf("Figure A2.pdf", width = 16, height = 11, family = "Courier", useDingbats=FALSE)
+pdf("Figure A2.pdf", width = 16, height = 11, family = "Courier", useDingbats=FALSE)
 SM_A2
-#dev.off() 
+dev.off() 

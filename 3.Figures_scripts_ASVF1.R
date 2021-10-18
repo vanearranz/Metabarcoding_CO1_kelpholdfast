@@ -63,7 +63,7 @@ summary(m)
 emm <- emmeans(m, "SFEP")
 
 ###Get the contrast that we had previously done
-design <- square_cm4[,1:11]
+design <- square_cm4[,1:10]
 
 contrast.names <- unlist(sapply(colnames(design), function(x) strsplit(x, "vs")))
 
@@ -97,7 +97,7 @@ LF.df$contrast <- as.character(LF.df$contrast)
 LF.df$contrast <- factor(LF.df$contrast, levels=SP.o)
 
 #To set up the panels
-LF.df$panel <- factor(rep(c("Sample Preparation", "DNA Extraction", "PCR Amplification"), times = c(10,6,6)), levels = c("Sample Preparation", "DNA Extraction", "PCR Amplification"))
+LF.df$panel <- factor(rep(c("Sample Preparation", "DNA Extraction", "PCR Amplification"), times = c(10,4,6)), levels = c("Sample Preparation", "DNA Extraction", "PCR Amplification"))
 
 plot.means <- ggplot(LF.df) + theme(panel.border = element_blank(),
   panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(size = 6)) +
@@ -116,7 +116,7 @@ ASV_f1.out_tmp_R4000_PA
 
 ASV_f1.out_tmp_R4000_PA_table <- as.data.frame(otu_table(ASV_f1.out_tmp_R4000_PA))
 PA <- t(ASV_f1.out_tmp_R4000_PA_table)
-rownames(PA) <- Design_long_format_edit$Sample_ID
+rownames(PA) <- Design_long_format$Sample_ID
 
 Jac <- vegdist(PA, method = "jaccard")
 
@@ -155,4 +155,6 @@ spider_AvsB <- ggplot() + theme_base()+
   theme(legend.position = "none")
 
 spider_AvsB 
+
+count_levels <- as.data.frame(Design_long_format %>% group_by(SFEP) %>% summarise(no_rows = length(SFEP)))
 
