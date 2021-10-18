@@ -31,8 +31,9 @@ Edesign.merging <- function(phyloseq.obj.raw, sample.data){
   
   ## Ea + Eb (subset BCE, merge samples by Sample and merge with the previous phyloseq) 
   Ea.Eb <- subset_samples(phyloseq.obj.norare, BCE=="BCE")
-  BCE <- merge_samples(Ea.Eb,group = "Smp", fun = sum)
-  sample_names(BCE) <- c("MTB05_BCE", "MTB09_BCE", "MTB11_BCE", "MTB14_BCE", "MTB20_BCE", "MTB21_BCE", "MTB27_BCE", "MTB30_BCE")
+  BCE <- merge_samples(Ea.Eb,group = "SF", fun = sum)
+  sample_names(BCE) <- c("MTB05_lrg_BCE", "MTB05_sml_BCE","MTB09_lrg_BCE","MTB09_MPFcom_BCE", "MTB09_MPFext_BCE", "MTB09_sml_BCE", "MTB11_lrg_BCE", "MTB11_MPFcom_BCE", "MTB11_MPFext_BCE", "MTB11_sml_BCE","MTB14_lrg_BCE", "MTB14_sml_BCE","MTB20_lrg_BCE", "MTB20_sml_BCE", "MTB21_lrg_BCE", "MTB21_MPFcom_BCE", "MTB21_MPFext_BCE", "MTB21_sml_BCE", "MTB27_lrg_BCE", "MTB27_sml_BCE", "MTB30_lrg_BCE", "MTB30_sml_BCE")
+  
   
   phyloseq.obj_norare.BCF.BCE <-merge_phyloseq(phyloseq.obj_norare.BCF, BCE)
   
@@ -100,7 +101,7 @@ Edesign.LM.pipeline <- function(phyloseq.obj, contrast.mat, design, R.size){
     
     #### Permadisp analysis 
     
-    index <- apply(contrast.mat[,1:11], 2, function(x) x != 0)
+    index <- apply(contrast.mat[,1:10], 2, function(x) x != 0)
     
     des.sub <- list()
     for(j in 1:ncol(index)){
@@ -121,7 +122,7 @@ Edesign.LM.pipeline <- function(phyloseq.obj, contrast.mat, design, R.size){
     #permutest(betadisper(Jac, design$SFEP), permutations = perm, pairwise = TRUE)
     
     permdisp.anova <- lapply(permdisp.l, function(x) anova(x, permutations = perm))
-    names(permdisp.anova) <- colnames(contrast.mat[,1:11])
+    names(permdisp.anova) <- colnames(contrast.mat[,1:10])
     
     out[[i]] <- list(LM_richness = m.summary,  PERMANOVA_composition = ad.mod, PERMDISP_composition = permdisp.anova)
   }
@@ -151,7 +152,6 @@ contrasts(Design_long_format$SFEP) <- as.matrix(Design_w_levels[,-1])
 # Delete the factor SPEF (row names) and add 1 at the first column for the intercept 
 square_cm4 <- as.data.frame(contrasts(Design_long_format$SFEP), row.names = FALSE)
 square_cm4
-
 
 #### To generate the results for each dataset, RUN the following commands in order #### 
 # 1. Run the function Edesign.merging to generate the bioinformatically combined samples
@@ -228,7 +228,7 @@ OTU_f2.LM.allr.out <- Edesign.LM.pipeline(phyloseq.obj = OTU_f2.out, contrast.ma
 OTU_f2_ass = subset_taxa(OTU_f2, Domain=="d__Eukaryota")
 OTU_f2_ass.out <- Edesign.merging(phyloseq.obj.raw = OTU_f2_ass, sample.data = sample_data_tomerge)
 OTU_f2.LM.ass.out <- Edesign.LM.pipeline(phyloseq.obj = OTU_f2_ass.out, contrast.mat = square_cm4, design = Design_long_format, R.size = 1500)
- 
+
 #### Results Filtering 0.05% ###### 
 
 ASV_f3
@@ -247,8 +247,8 @@ OTU_f3_ass = subset_taxa(OTU_f3, Domain=="d__Eukaryota")
 OTU_f3_ass.out <- Edesign.merging(phyloseq.obj.raw = OTU_f3_ass, sample.data = sample_data_tomerge)
 OTU_f3.LM.ass.out <- Edesign.LM.pipeline(phyloseq.obj = OTU_f3_ass.out, contrast.mat = square_cm4, design = Design_long_format, R.size = 1500)
 
-#save(ASV,ASVtable_tsc,OTUtable_tsc,tax_table_newtaxonomy_8ranks, reference_seqs0, sampledata, matchlistASV, matchlistOTU, ASV_nofilter, OTU_nofilter, ASV_lulu, OTU_lulu, ASV_f1, OTU_f1, ASV_f2, OTU_f2, ASV_f3, OTU_f3, sample_data_tomerge, square_cm4, Design_long_format, file = "Edesign_github.Rdata")
+save(ASV,ASVtable_tsc,OTUtable_tsc,tax_table_newtaxonomy_8ranks, reference_seqs0, sampledata, matchlistASV, matchlistOTU, ASV_nofilter, OTU_nofilter, ASV_lulu, OTU_lulu, ASV_f1, OTU_f1, ASV_f2, OTU_f2, ASV_f3, OTU_f3, sample_data_tomerge, square_cm4, Design_long_format, file = "Resources/Edesign_github.Rdata")
 
-save(ASV_nf.LM.allr.out, ASV_nf.LM.ass.out, OTU_nf.LM.allr.out, OTU_nf.LM.ass.out, ASV_lulu.LM.allr.out, ASV_lulu.LM.ass.out, OTU_lulu.LM.allr.out, OTU_lulu.LM.ass.out, ASV_f1.LM.allr.out, ASV_f1.LM.ass.out, OTU_f1.LM.allr.out, OTU_f1.LM.ass.out, ASV_f2.LM.allr.out, ASV_f2.LM.ass.out, OTU_f2.LM.allr.out, OTU_f2.LM.ass.out, ASV_f3.LM.allr.out, ASV_f3.LM.ass.out, OTU_f3.LM.allr.out, OTU_f3.LM.ass.out, file = "Edesign_results.Rdata" )
+save(ASV_nf.LM.allr.out, ASV_nf.LM.ass.out, OTU_nf.LM.allr.out, OTU_nf.LM.ass.out, ASV_lulu.LM.allr.out, ASV_lulu.LM.ass.out, OTU_lulu.LM.allr.out, OTU_lulu.LM.ass.out, ASV_f1.LM.allr.out, ASV_f1.LM.ass.out, OTU_f1.LM.allr.out, OTU_f1.LM.ass.out, ASV_f2.LM.allr.out, ASV_f2.LM.ass.out, OTU_f2.LM.allr.out, OTU_f2.LM.ass.out, ASV_f3.LM.allr.out, ASV_f3.LM.ass.out, OTU_f3.LM.allr.out, OTU_f3.LM.ass.out, file = "Resources/Edesign_results.Rdata" )
 
 
