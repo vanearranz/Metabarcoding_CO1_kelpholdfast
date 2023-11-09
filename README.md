@@ -1,4 +1,3 @@
-hola
 # Metabarcoding_CO1_kelpholdfast
 This workflow is specific to analysing eukaryote diversity from community DNA metabarcoding of kelp holdfasts using CO1 gene region from raw reads. It reproduces the cleaning and curation steps as well as the biostatiscal analysis included in the manuscript "Metabarcoding hyperdiverse kelp holdfast communities on temperate reefs: an experimental approach to inform future studies." by Vanessa Arranz, Libby Liggins and J. David Aguirre.  
 
